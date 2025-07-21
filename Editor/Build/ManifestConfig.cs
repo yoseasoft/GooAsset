@@ -38,9 +38,9 @@ namespace HooAsset.Editor.Build
     public class ManifestConfig : ScriptableObject
     {
         /// <summary>
-        /// AB打包选项
+        /// AssetBundle构建选项，主要用于设置压缩算法、加密保护等参数
         /// </summary>
-        [LabelText("AB打包选项"), DrawWithUnity]
+        [LabelText("构建选项"), DrawWithUnity]
         public BuildAssetBundleOptions buildAssetBundleOptions = BuildAssetBundleOptions.ChunkBasedCompression;
 
         /// <summary>
