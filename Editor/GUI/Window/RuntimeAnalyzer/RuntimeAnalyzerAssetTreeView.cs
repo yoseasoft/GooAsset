@@ -25,12 +25,12 @@
 /// -------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
+
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
-using System.Collections.Generic;
-using Object = UnityEngine.Object;
 
 namespace HooAsset.Editor.GUI
 {
@@ -219,7 +219,7 @@ namespace HooAsset.Editor.GUI
             if (item == null)
                 return;
 
-            Object obj = AssetDatabase.LoadAssetAtPath<Object>(item.displayName);
+            UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(item.displayName);
             if (!obj)
                 return;
 

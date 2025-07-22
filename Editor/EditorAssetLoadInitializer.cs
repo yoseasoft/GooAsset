@@ -43,7 +43,7 @@ namespace HooAsset.Editor
             AssetPath.PlatformName = BuildUtils.GetActiveBuildPlatformName();
 
             AssetSettings settings = BuildUtils.GetOrCreateAssetSettings();
-            Logger.loggable = settings.isEnableLog;
+            Logger.DebuggingInformationPrintable = settings.isEnableLog;
             switch (settings.editorAssetLoadMode)
             {
                 case EditorAssetLoadMode.使用资源目录原文件加载:

@@ -30,9 +30,9 @@ using Sirenix.OdinInspector;
 namespace HooAsset
 {
     /// <summary>
-    /// 资源运行基础配置
+    /// 资源运行参数配置类
     /// </summary>
-    // [CreateAssetMenu(menuName = "资源管理/资源基础设置", fileName = "AssetSettings")]// (因只创建一个就足够, 创建后不再在菜单显示, 故屏蔽此行代码)
+    // [CreateAssetMenu(menuName = "HooAsset/Create Asset Settings", fileName = "AssetSettings")] // (因每个工程只需要创建一个实例就足够, 创建后不再在菜单显示, 故屏蔽此行代码)
     public class AssetSettings : ScriptableObject
     {
 #if UNITY_EDITOR
