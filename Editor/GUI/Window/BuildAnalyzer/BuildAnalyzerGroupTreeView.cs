@@ -1058,7 +1058,7 @@ namespace HooAsset.Editor.GUI
 
                         break;
                     case 1: // 第二列:大小
-                        DefaultGUI.Label(cellRect, Utility.FormatBytes(item.size), args.selected, args.focused);
+                        DefaultGUI.Label(cellRect, Utility.Format.FormatBytes(item.size), args.selected, args.focused);
                         break;
                 }
             }
@@ -1144,7 +1144,7 @@ namespace HooAsset.Editor.GUI
                     }
 
                     if (bundleDepBundleCount > 0)
-                        dependentBundleTreeInfo.title = $"我依赖的Bundle({bundleDepBundleCount}个, 共{Utility.FormatBytes(bundleDepBundleSize)})";
+                        dependentBundleTreeInfo.title = $"我依赖的Bundle({bundleDepBundleCount}个, 共{Utility.Format.FormatBytes(bundleDepBundleSize)})";
 
                     #endregion
 
@@ -1222,7 +1222,7 @@ namespace HooAsset.Editor.GUI
                     }
 
                     if (assetDepBundleCount > 0)
-                        dependentBundleTreeInfo.title = $"我依赖的Bundle({assetDepBundleCount}个, 共{Utility.FormatBytes(assetDepBundleSize)})";
+                        dependentBundleTreeInfo.title = $"我依赖的Bundle({assetDepBundleCount}个, 共{Utility.Format.FormatBytes(assetDepBundleSize)})";
 
                     #endregion
 

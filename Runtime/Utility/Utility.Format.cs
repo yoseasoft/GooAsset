@@ -45,6 +45,44 @@ namespace HooAsset
         public static class Format
         {
             /// <summary>
+            /// 每个数据单位对应的字节数
+            /// </summary>
+            static readonly long[] _byteUnits =
+            {
+                1073741824, 1048576, 1024, 1
+            };
+
+            /// <summary>
+            /// 每个数据单位的名字
+            /// </summary>
+            static readonly string[] _byteUnitsNames =
+            {
+                "GB", "MB", "KB", "B"
+            };
+
+            /// <summary>
+            /// 格式化成数据大小形式(GB, MB, KB, B)显示
+            /// </summary>
+            public static string FormatBytes(long bytes)
+            {
+                string size = "0 B";
+                if (bytes == 0)
+                    return size;
+
+                for (var i = 0; i < _byteUnits.Length; i++)
+                {
+                    long unit = _byteUnits[i];
+                    if (bytes >= unit)
+                    {
+                        size = $"{(double) bytes / unit:0.00} {_byteUnitsNames[i]}";
+                        break;
+                    }
+                }
+
+                return size;
+            }
+
+            /// <summary>
             /// 转换为标准Hash格式的字符串
             /// 这里用的ToString("X2")为C#中的字符串格式控制符(X为十六进制, 2为每次都是两位数)
             /// </summary>

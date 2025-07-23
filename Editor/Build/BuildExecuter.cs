@@ -355,7 +355,7 @@ namespace HooAsset.Editor.Build
 
             if (totalNewFileCount > 0)
             {
-                Debug.Log($"本次构建共产生{totalNewFileCount}个新文件, 新文件总大小为:{Utility.FormatBytes(totalNewFilesSize)}");
+                Debug.Log($"本次构建共产生{totalNewFileCount}个新文件, 新文件总大小为:{Utility.Format.FormatBytes(totalNewFilesSize)}");
             }
         }
 
@@ -711,7 +711,7 @@ namespace HooAsset.Editor.Build
 
             if (deleteFileCount > 0)
             {
-                Debug.Log($"共清理{deleteFileCount}个过时文件, 节省空间{Utility.FormatBytes(deleteFileSize)}");
+                Debug.Log($"共清理{deleteFileCount}个过时文件, 节省空间{Utility.Format.FormatBytes(deleteFileSize)}");
                 EditorUtility.ClearProgressBar();
             }
             else

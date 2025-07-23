@@ -32,7 +32,7 @@ using System.Collections.Generic;
 namespace HooAsset
 {
     /// <summary>
-    /// 资源清单管理
+    /// 资源清单管理类
     /// </summary>
     public static class ManifestHandler
     {
@@ -107,7 +107,7 @@ namespace HooAsset
         {
             if (IsEncryptManifestFile)
             {
-                return AESEncryptProvider.Encrypt(JsonUtility.ToJson(scriptableObject), Gd4H, ZNfR);
+                return Utility.Cryptography.Encrypt(JsonUtility.ToJson(scriptableObject), Gd4H, ZNfR);
             }
 
             return JsonUtility.ToJson(scriptableObject);
@@ -120,7 +120,7 @@ namespace HooAsset
         {
             if (IsEncryptManifestFile)
             {
-                return AESEncryptProvider.Decrypt(File.ReadAllText(filePath), Gd4H, ZNfR);
+                return Utility.Cryptography.Decrypt(File.ReadAllText(filePath), Gd4H, ZNfR);
             }
 
             return File.ReadAllText(filePath);

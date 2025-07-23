@@ -757,9 +757,9 @@ namespace HooAsset.Editor.GUI
 
                         _changedSizeTextStyle ??= new GUIStyle(EditorStyles.label) { alignment = TextAnchor.MiddleCenter, richText = true };
                         if (item.changedSize > 0)
-                            EditorGUI.LabelField(cellRect, $"<color=red>↑{Utility.FormatBytes(item.changedSize)}</color>", _changedSizeTextStyle);
+                            EditorGUI.LabelField(cellRect, $"<color=red>↑{Utility.Format.FormatBytes(item.changedSize)}</color>", _changedSizeTextStyle);
                         else if (item.changedSize < 0)
-                            EditorGUI.LabelField(cellRect, $"<color=lime>↓{Utility.FormatBytes(Math.Abs(item.changedSize))}</color>", _changedSizeTextStyle);
+                            EditorGUI.LabelField(cellRect, $"<color=lime>↓{Utility.Format.FormatBytes(Math.Abs(item.changedSize))}</color>", _changedSizeTextStyle);
                         else
                             EditorGUI.LabelField(cellRect, "-", _changedSizeTextStyle);
                         break;
@@ -772,7 +772,7 @@ namespace HooAsset.Editor.GUI
                         }
 
                         _updateSizeTextStyle ??= new GUIStyle(EditorStyles.label) { alignment = TextAnchor.MiddleCenter };
-                        EditorGUI.LabelField(cellRect, Utility.FormatBytes(item.size), _updateSizeTextStyle);
+                        EditorGUI.LabelField(cellRect, Utility.Format.FormatBytes(item.size), _updateSizeTextStyle);
                         break;
                 }
             }

@@ -24,56 +24,12 @@
 /// THE SOFTWARE.
 /// -------------------------------------------------------------------------------
 
-using System;
-using System.IO;
-using System.Text;
-using UnityEngine;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-
 namespace HooAsset
 {
     /// <summary>
-    /// 工具类
+    /// 资源模块的辅助工具类，整合所有常用的工具函数
     /// </summary>
     public static partial class Utility
     {
-        /// <summary>
-        /// 每个数据单位对应的字节数
-        /// </summary>
-        static readonly long[] s_byteUnits =
-        {
-            1073741824, 1048576, 1024, 1
-        };
-
-        /// <summary>
-        /// 每个数据单位的名字
-        /// </summary>
-        static readonly string[] s_byteUnitsNames =
-        {
-            "GB", "MB", "KB", "B"
-        };
-
-        /// <summary>
-        /// 格式化成数据大小形式(GB, MB, KB, B)显示
-        /// </summary>
-        public static string FormatBytes(long bytes)
-        {
-            string size = "0 B";
-            if (bytes == 0)
-                return size;
-
-            for (var i = 0; i < s_byteUnits.Length; i++)
-            {
-                long unit = s_byteUnits[i];
-                if (bytes >= unit)
-                {
-                    size = $"{(double)bytes / unit:0.00} {s_byteUnitsNames[i]}";
-                    break;
-                }
-            }
-
-            return size;
-        }
     }
 }

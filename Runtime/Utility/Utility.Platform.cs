@@ -24,14 +24,7 @@
 /// THE SOFTWARE.
 /// -------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using SystemEncoding = System.Text.Encoding;
-using SystemFile = System.IO.File;
-using SystemFileStream = System.IO.FileStream;
-using SystemMD5 = System.Security.Cryptography.MD5;
-using SystemStringBuilder = System.Text.StringBuilder;
+using RuntimePlatform = UnityEngine.RuntimePlatform;
 
 namespace HooAsset
 {
@@ -58,17 +51,17 @@ namespace HooAsset
                 get
                 {
 #if UNITY_EDITOR
-                    if (!Application.isEditor)
+                    if (!UnityEngine.Application.isEditor)
                     {
 #endif
-                        return Application.platform switch
+                        return UnityEngine.Application.platform switch
                         {
                             RuntimePlatform.WindowsPlayer => RuntimePlatform.WindowsPlayer,
                             RuntimePlatform.OSXPlayer => RuntimePlatform.OSXPlayer,
                             RuntimePlatform.Android => RuntimePlatform.Android,
                             RuntimePlatform.IPhonePlayer => RuntimePlatform.IPhonePlayer,
                             RuntimePlatform.WebGLPlayer => RuntimePlatform.WebGLPlayer,
-                            _ => throw new Exception("Unsupported Platform")
+                            _ => throw new System.Exception("Unsupported Platform")
                         };
 #if UNITY_EDITOR
                     }
@@ -80,7 +73,7 @@ namespace HooAsset
                         UnityEditor.BuildTarget.Android => RuntimePlatform.Android,
                         UnityEditor.BuildTarget.iOS => RuntimePlatform.IPhonePlayer,
                         UnityEditor.BuildTarget.WebGL => RuntimePlatform.WebGLPlayer,
-                        _ => throw new Exception("Unsupported Platform")
+                        _ => throw new System.Exception("Unsupported Platform")
                     };
 
 #endif

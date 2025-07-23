@@ -528,13 +528,13 @@ namespace HooAsset.Editor.GUI
             long changedSize = newTotalSize - oldTotalSize;
             string changedSizeTips = string.Empty;
             if (changedSize > 0)
-                changedSizeTips = $"(<color=red>↑{Utility.FormatBytes(changedSize)}</color>)";
+                changedSizeTips = $"(<color=red>↑{Utility.Format.FormatBytes(changedSize)}</color>)";
             else if (changedSize < 0)
-                changedSizeTips = $"(<color=lime>↓{Utility.FormatBytes(Math.Abs(changedSize))}</color>)";
+                changedSizeTips = $"(<color=lime>↓{Utility.Format.FormatBytes(Math.Abs(changedSize))}</color>)";
 
-            _overviewTipsText = $"总大小:{Utility.FormatBytes(oldTotalSize)} → {Utility.FormatBytes(newTotalSize)}{changedSizeTips}     " +
+            _overviewTipsText = $"总大小:{Utility.Format.FormatBytes(oldTotalSize)} → {Utility.Format.FormatBytes(newTotalSize)}{changedSizeTips}     " +
                                 $"总文件数:{oldFileCount} → {newFileCount}     " +
-                                $"更新大小:{Utility.FormatBytes(updateSize)}     " +
+                                $"更新大小:{Utility.Format.FormatBytes(updateSize)}     " +
                                 $"更新文件数:{updateCount}";
 
             _loadRecordCoroutine = null;
