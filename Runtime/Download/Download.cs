@@ -282,7 +282,7 @@ namespace HooAsset
 
                 if (!string.IsNullOrEmpty(downloadInfo.hash))
                 {
-                    string hash = Utility.ComputeHash(downloadInfo.savePath);
+                    string hash = Utility.Format.ComputeHashFromFile(downloadInfo.savePath);
                     if (downloadInfo.hash != hash)
                     {
                         File.Delete(downloadInfo.savePath);

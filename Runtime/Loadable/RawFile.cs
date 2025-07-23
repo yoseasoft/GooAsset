@@ -99,7 +99,7 @@ namespace HooAsset
             FileInfo fileInfo = new FileInfo(savePath);
             if (fileInfo.Exists)
             {
-                if (_bundleInfo.Size == fileInfo.Length && Utility.ComputeHash(savePath) == _bundleInfo.Hash)
+                if (_bundleInfo.Size == fileInfo.Length && Utility.Format.ComputeHashFromFile(savePath) == _bundleInfo.Hash)
                 {
                     Finish();
                     return;
@@ -172,7 +172,7 @@ namespace HooAsset
             FileInfo fileInfo = new FileInfo(savePath);
             if (fileInfo.Exists)
             {
-                if (_bundleInfo.Size == fileInfo.Length && Utility.ComputeHash(savePath) == _bundleInfo.Hash)
+                if (_bundleInfo.Size == fileInfo.Length && Utility.Format.ComputeHashFromFile(savePath) == _bundleInfo.Hash)
                 {
                     Finish();
                     return;

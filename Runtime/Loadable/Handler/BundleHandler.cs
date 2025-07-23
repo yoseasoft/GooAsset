@@ -39,12 +39,12 @@ namespace HooAsset
         /// <summary>
         /// ab包是否使用算法加密
         /// </summary>
-        public static bool IsBundleEncrypt => Utility.CurrentPlatform != RuntimePlatform.WebGLPlayer;
+        public static bool IsBundleEncrypt => Utility.Platform.CurrentPlatform != RuntimePlatform.WebGLPlayer;
 
         /// <summary>
         /// ab包不使用算法加密时的简单文件偏移, 0为不进行偏移
         /// </summary>
-        public static int BundleOffset => Utility.CurrentPlatform != RuntimePlatform.WebGLPlayer ? 8 : 0;
+        public static int BundleOffset => Utility.Platform.CurrentPlatform != RuntimePlatform.WebGLPlayer ? 8 : 0;
 
         /// <summary>
         /// 流文件读取缓冲区大小(此处使用Unity默认的32KB)
@@ -101,7 +101,7 @@ namespace HooAsset
 
                 string address = GetAssetBundleLoadPath(bundleInfo);
 
-                if (Utility.CurrentPlatform != RuntimePlatform.WebGLPlayer)
+                if (Utility.Platform.CurrentPlatform != RuntimePlatform.WebGLPlayer)
                 {
                     if (address.StartsWith("http://") || address.StartsWith("https://") || address.StartsWith("ftp://"))
                         bundle = new DownloadBundle { address = address, bundleInfo = bundleInfo };

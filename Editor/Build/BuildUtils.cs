@@ -219,18 +219,18 @@ namespace HooAsset.Editor.Build
                 case BundleMode.原始文件:
                     if (isBuildHashOnlyFile)
                     {
-                        bundleName = Utility.ComputeHash(assetPath);
+                        bundleName = Utility.Format.ComputeHashFromFile(assetPath);
                     }
                     else
                     {
                         // 此处若有后缀的话则去除后缀, 下面再加上
                         if (Path.HasExtension(assetPath))
                         {
-                            bundleName = $"{assetPath.Remove(assetPath.Length - Path.GetExtension(assetPath).Length)}_{Utility.ComputeHash(assetPath)}";
+                            bundleName = $"{assetPath.Remove(assetPath.Length - Path.GetExtension(assetPath).Length)}_{Utility.Format.ComputeHashFromFile(assetPath)}";
                         }
                         else
                         {
-                            bundleName = $"{assetPath}_{Utility.ComputeHash(assetPath)}";
+                            bundleName = $"{assetPath}_{Utility.Format.ComputeHashFromFile(assetPath)}";
                         }
                     }
                     break;
@@ -329,7 +329,7 @@ namespace HooAsset.Editor.Build
         /// </summary>
         public static string GetActiveBuildPlatformName()
         {
-            return Utility.CurrentPlatformName;
+            return Utility.Platform.CurrentPlatformName;
         }
 
         /// <summary>

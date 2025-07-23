@@ -29,21 +29,21 @@ using System.Collections.Generic;
 namespace HooAsset
 {
     /// <summary>
-    /// Operation对象管理
+    /// Operation对象的管理类，由它负责统一调度所有的操作对象实例
     /// </summary>
     internal static class OperationHandler
     {
         /// <summary>
         /// 处理中的Operation对象列表
         /// </summary>
-        static readonly List<Operation> ProcessingList = new();
+        static readonly List<Operation> _operations = new();
 
         /// <summary>
         /// 添加Operation对象
         /// </summary>
         internal static void AddOperation(Operation operation)
         {
-            ProcessingList.Add(operation);
+            _operations.Add(operation);
         }
 
         /// <summary>
@@ -52,20 +52,22 @@ namespace HooAsset
         internal static void UpdateAllOperations()
         {
             // 需要按顺序Update, 所以虽然要Remove也不倒着来遍历
-            for (int i = 0; i < ProcessingList.Count; i++)
+            for (int n = 0; n < _operations.Count; ++n)
             {
                 if (AssetDispatcher.Instance.IsBusy)
                     return;
 
-                Operation operation = ProcessingList[i];
+                Operation operation = _operations[n];
                 operation.Update();
 
                 if (operation.IsDone)
                 {
-                    ProcessingList.RemoveAt(i);
-                    i--;
+                    _operations.RemoveAt(n);
+                    --n;
+
                     if (operation.Status == OperationStatus.Failed)
                         Logger.Warning($"操作{operation.GetType().Name}未完成, 原因:{operation.Error}");
+
                     operation.Complete();
                 }
             }

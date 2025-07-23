@@ -239,7 +239,7 @@ namespace HooAsset
             // 检查下载目录是否存在此文件
             string path = AssetPath.TranslateToDownloadDataPath(bundleInfo.SaveFileName);
             FileInfo fileInfo = new FileInfo(path);
-            return fileInfo.Exists && fileInfo.Length == bundleInfo.Size && Utility.ComputeHash(path) == bundleInfo.Hash;
+            return fileInfo.Exists && fileInfo.Length == bundleInfo.Size && Utility.Format.ComputeHashFromFile(path) == bundleInfo.Hash;
         }
 
         /// <summary>

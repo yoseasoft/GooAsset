@@ -94,7 +94,7 @@ namespace HooAsset
         {
             if (IsEncryptManifestFile)
             {
-                return $"{Utility.ComputeStringHash($"d4a27b33a023fdabc304433a38a64e11_v{version}")}.unity3d";
+                return $"{Utility.Format.ComputeHashFromString($"d4a27b33a023fdabc304433a38a64e11_v{version}")}.unity3d";
             }
 
             return $"version_v{version}.json";
@@ -221,7 +221,7 @@ namespace HooAsset
         public static bool IsManifestFileExist(ManifestVersion manifestVersion)
         {
             FileInfo info = new FileInfo(AssetPath.TranslateToDownloadDataPath(manifestVersion.FileName));
-            return info.Exists && info.Length == manifestVersion.Size && Utility.ComputeHash(info.FullName) == manifestVersion.Hash;
+            return info.Exists && info.Length == manifestVersion.Size && Utility.Format.ComputeHashFromFile(info.FullName) == manifestVersion.Hash;
         }
 
         /// <summary>

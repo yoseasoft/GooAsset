@@ -783,7 +783,7 @@ namespace HooAsset.Editor.Build
                 new VersionFileInfo
                 {
                     name = ManifestHandler.DefaultVersionFileName,
-                    hash = Utility.ComputeHash(versionContainerFilePath),
+                    hash = Utility.Format.ComputeHashFromFile(versionContainerFilePath),
                     size = new FileInfo(versionContainerFilePath).Length
                 }
             };
@@ -904,7 +904,7 @@ namespace HooAsset.Editor.Build
                                     {
                                         AssetPath = assetPath,
                                         Size = new FileInfo(fullPath).Length,
-                                        Hash = Utility.ComputeHash(fullPath)
+                                        Hash = Utility.Format.ComputeHashFromFile(fullPath)
                                     });
                                 }
                                 else

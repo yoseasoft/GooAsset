@@ -25,13 +25,14 @@
 /// -------------------------------------------------------------------------------
 
 using System;
-using UnityEngine;
 using System.Threading.Tasks;
+
+using UnityEngine;
 
 namespace HooAsset
 {
     /// <summary>
-    /// 操作基类
+    /// 操作流程任务对象的基类
     /// </summary>
     public class Operation : CustomYieldInstruction
     {
@@ -41,14 +42,14 @@ namespace HooAsset
         public override bool keepWaiting => !IsDone;
 
         /// <summary>
-        /// 操作完成回调
+        /// 操作完成的回调句柄
         /// </summary>
-        public Action<Operation> completed;
+        private Action<Operation> completed;
 
         /// <summary>
-        /// 当前状态
+        /// 当前操作执行的状态标识
         /// </summary>
-        public OperationStatus Status { get; protected set; } = OperationStatus.Init;
+        public OperationStatus Status { get; protected set; } = OperationStatus.Initialize;
 
         /// <summary>
         /// 进度(取值范围:0~1)
@@ -61,7 +62,7 @@ namespace HooAsset
         public bool IsDone => Status is OperationStatus.Successful or OperationStatus.Failed;
 
         /// <summary>
-        /// 错误原因
+        /// 当操作发生错误时，记录错误信息
         /// </summary>
         public string Error { get; protected set; }
 
@@ -85,7 +86,7 @@ namespace HooAsset
         /// </summary>
         public void Cancel()
         {
-            Finish("取消");
+            Finish("取消操作");
         }
 
         /// <summary>

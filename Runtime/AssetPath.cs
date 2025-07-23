@@ -33,7 +33,7 @@ using System.Collections.Generic;
 namespace HooAsset
 {
     /// <summary>
-    /// 资源目录相关
+    /// 资源目录及路径相关的辅助工具类，用于统一提供对资源访问路径相关的接口函数
     /// </summary>
     public static class AssetPath
     {
@@ -109,7 +109,7 @@ namespace HooAsset
             // 以下目录允许编辑器下直接修改, 所以需要先判空再初始化
             if (string.IsNullOrEmpty(PlatformName))
             {
-                PlatformName = Utility.CurrentPlatformName;
+                PlatformName = Utility.Platform.CurrentPlatformName;
             }
 
             if (string.IsNullOrEmpty(LocalDataPath))

@@ -27,28 +27,28 @@
 namespace HooAsset
 {
     /// <summary>
-    /// 操作状态
+    /// 操作的任务状态的枚举类型定义
     /// </summary>
     public enum OperationStatus
     {
         /// <summary>
         /// 初始状态
         /// </summary>
-        Init,
+        Initialize,
 
         /// <summary>
-        /// 处理中
+        /// 处理状态
         /// </summary>
         Processing,
 
         /// <summary>
-        /// 成功
+        /// 成功状态
         /// </summary>
         Successful,
 
         /// <summary>
-        /// 失败
+        /// 失败状态
         /// </summary>
-        Failed
+        Failed,
     }
 }

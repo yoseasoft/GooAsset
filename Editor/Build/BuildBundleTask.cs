@@ -439,7 +439,7 @@ namespace HooAsset.Editor.Build
                     {
                         using FileStream stream = File.OpenRead(filePath);
                         manifestBundleInfo.Size = stream.Length;
-                        manifestBundleInfo.Hash = Utility.ComputeHash(stream);
+                        manifestBundleInfo.Hash = Utility.Format.ComputeHashFromFile(stream);
                     }
                     else
                     {
@@ -472,7 +472,7 @@ namespace HooAsset.Editor.Build
             File.WriteAllText(filePath, ManifestHandler.ManifestObjectToJson(manifest));
 
             // 重命名文件(使用hash用作文件后缀)
-            string hash = Utility.ComputeHash(filePath);
+            string hash = Utility.Format.ComputeHashFromFile(filePath);
             string newFileName = ManifestHandler.IsEncryptManifestFile ? (hash + BuildUtils.AssetBundleFileExtension) : $"{_manifestName}_{hash}.json";
             if (newFileName == ManifestHandler.VersionFileName || newFileName == ManifestHandler.WhiteListVersionFileName)
             {
