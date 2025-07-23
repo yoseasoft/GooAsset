@@ -190,7 +190,7 @@ namespace HooAsset.Editor.Build
             }
 
             // 分析是否有删除的清单
-            string versionContainerFilePath = BuildUtils.TranslateToBuildPath(ManifestHandler.VersionFileName);
+            string versionContainerFilePath = BuildUtils.TranslateToBuildPath(Configure.File.GetVersionFileName());
             if (File.Exists(versionContainerFilePath))
             {
                 ManifestVersionContainer oldVersionContainer = ManifestHandler.LoadManifestVersionContainer(versionContainerFilePath);
@@ -214,7 +214,7 @@ namespace HooAsset.Editor.Build
         /// </summary>
         static int GetCurrentContainerVersion()
         {
-            string versionContainerFilePath = BuildUtils.TranslateToBuildPath(ManifestHandler.VersionFileName);
+            string versionContainerFilePath = BuildUtils.TranslateToBuildPath(Configure.File.GetVersionFileName());
             if (!File.Exists(versionContainerFilePath))
             {
                 return 0;
@@ -230,7 +230,7 @@ namespace HooAsset.Editor.Build
         static void BuildManifestVersionContainerFile(List<ManifestVersion> newBuildManifestVersionList)
         {
             int newVersion = GetCurrentContainerVersion() + 1;
-            string versionContainerFilePath = BuildUtils.TranslateToBuildPath(ManifestHandler.VersionFileName);
+            string versionContainerFilePath = BuildUtils.TranslateToBuildPath(Configure.File.GetVersionFileName());
 
             ManifestVersionContainer newVersionContainer;
             if (File.Exists(versionContainerFilePath))
@@ -268,7 +268,7 @@ namespace HooAsset.Editor.Build
             File.WriteAllText(versionContainerFilePath, ManifestHandler.ManifestObjectToJson(newVersionContainer));
 
             // 带版本号的文件, 网络下载用
-            string filePathWithVersion = BuildUtils.TranslateToBuildPath(ManifestHandler.GetVersionFileNameWithVersion(newVersion));
+            string filePathWithVersion = BuildUtils.TranslateToBuildPath(Configure.File.GetVersionFileName(newVersion));
             File.Copy(versionContainerFilePath, filePathWithVersion, true);
 
             Debug.Log($"构建资源包完成, 最新版本:{newVersion}");
@@ -283,7 +283,7 @@ namespace HooAsset.Editor.Build
             long totalNewFilesSize = 0L;
 
             int curVersion = GetCurrentContainerVersion();
-            string oldVersionContainerPath = BuildUtils.TranslateToBuildPath(ManifestHandler.GetVersionFileNameWithVersion(curVersion - 1));
+            string oldVersionContainerPath = BuildUtils.TranslateToBuildPath(Configure.File.GetVersionFileName(curVersion - 1));
             ManifestVersionContainer oldVersionContainer;
             if (File.Exists(oldVersionContainerPath))
             {
@@ -346,7 +346,7 @@ namespace HooAsset.Editor.Build
             }
 
             // 计算版本文件(此处不计算不带版本号的版本文件，因每个版本都有此文件，而且仅打包时用，不会上传)
-            string newFilePathWithVersion = BuildUtils.TranslateToBuildPath(ManifestHandler.GetVersionFileNameWithVersion(curVersion));
+            string newFilePathWithVersion = BuildUtils.TranslateToBuildPath(Configure.File.GetVersionFileName(curVersion));
             if (File.Exists(newFilePathWithVersion))
             {
                 totalNewFileCount++;
@@ -366,7 +366,7 @@ namespace HooAsset.Editor.Build
         {
             // 获取当前最新版本
             int version = GetCurrentContainerVersion();
-            string lastVersionFilePath = BuildUtils.TranslateToBuildPath(ManifestHandler.GetVersionFileNameWithVersion(version - 1));
+            string lastVersionFilePath = BuildUtils.TranslateToBuildPath(Configure.File.GetVersionFileName(version - 1));
             if (!File.Exists(lastVersionFilePath))
             {
                 return null;
@@ -394,7 +394,7 @@ namespace HooAsset.Editor.Build
             List<string> newVersionFilesName = new();
 
             // 普通版本文件
-            string newVersionFileName = ManifestHandler.VersionFileName;
+            string newVersionFileName = Configure.File.GetVersionFileName();
             string newVersionFilePath = BuildUtils.TranslateToBuildPath(newVersionFileName);
             if (File.Exists(newVersionFilePath))
             {
@@ -403,7 +403,7 @@ namespace HooAsset.Editor.Build
 
             // 带版本的版本文件
             int curVersion = GetCurrentContainerVersion();
-            string newVersionFileWithVersionNumName = ManifestHandler.GetVersionFileNameWithVersion(curVersion);
+            string newVersionFileWithVersionNumName = Configure.File.GetVersionFileName(curVersion);
             string newVersionFileWithVersionNumPath = BuildUtils.TranslateToBuildPath(newVersionFileWithVersionNumName);
             if (File.Exists(newVersionFileWithVersionNumPath))
             {
@@ -439,7 +439,7 @@ namespace HooAsset.Editor.Build
             }
 
             // 清单文件
-            string oldVersionContainerPath = BuildUtils.TranslateToBuildPath(ManifestHandler.GetVersionFileNameWithVersion(curVersion - 1));
+            string oldVersionContainerPath = BuildUtils.TranslateToBuildPath(Configure.File.GetVersionFileName(curVersion - 1));
             ManifestVersionContainer oldVersionContainer;
             if (File.Exists(oldVersionContainerPath))
             {
@@ -491,7 +491,7 @@ namespace HooAsset.Editor.Build
 
             if (File.Exists(newVersionFilePath))
             {
-                string destFilePath = AssetPath.CombinePath(BuildUtils.PlatformUploadWhiteListVersionFilePath, ManifestHandler.WhiteListVersionFileName);
+                string destFilePath = AssetPath.CombinePath(BuildUtils.PlatformUploadWhiteListVersionFilePath, Configure.File.GetWhiteListVersionFileName());
                 File.Copy(newVersionFilePath, destFilePath, true);
             }
 
@@ -524,7 +524,7 @@ namespace HooAsset.Editor.Build
 
             // 暂时全量复制此版本所有需要上传的资源
             ManifestVersionContainer versionContainer = null;
-            string versionContainerFilePath = BuildUtils.TranslateToBuildPath(ManifestHandler.VersionFileName);
+            string versionContainerFilePath = BuildUtils.TranslateToBuildPath(Configure.File.GetVersionFileName());
             if (File.Exists(versionContainerFilePath))
             {
                 versionContainer = ManifestHandler.LoadManifestVersionContainer(versionContainerFilePath);
@@ -618,7 +618,7 @@ namespace HooAsset.Editor.Build
             List<string> usefulFileNameList = new(2000);
 
             ManifestVersionContainer versionContainer = null;
-            string versionContainerFilePath = BuildUtils.TranslateToBuildPath(ManifestHandler.VersionFileName);
+            string versionContainerFilePath = BuildUtils.TranslateToBuildPath(Configure.File.GetVersionFileName());
             if (File.Exists(versionContainerFilePath))
             {
                 versionContainer = ManifestHandler.LoadManifestVersionContainer(versionContainerFilePath);
@@ -627,8 +627,8 @@ namespace HooAsset.Editor.Build
             if (versionContainer != null)
             {
                 // 加入版本文件
-                usefulFileNameList.Add(ManifestHandler.VersionFileName);
-                usefulFileNameList.Add(ManifestHandler.GetVersionFileNameWithVersion(versionContainer.Version));
+                usefulFileNameList.Add(Configure.File.GetVersionFileName());
+                usefulFileNameList.Add(Configure.File.GetVersionFileName(versionContainer.Version));
 
                 foreach (ManifestVersion manifestVersion in versionContainer.AllManifestVersions)
                 {
@@ -725,7 +725,7 @@ namespace HooAsset.Editor.Build
         /// </summary>
         static void RecordBuildInfo(List<ManifestVersion> newBuildManifestVersionList)
         {
-            string versionContainerFilePath = BuildUtils.TranslateToBuildPath(ManifestHandler.VersionFileName);
+            string versionContainerFilePath = BuildUtils.TranslateToBuildPath(Configure.File.GetVersionFileName());
             if (!File.Exists(versionContainerFilePath))
             {
                 return;
@@ -782,7 +782,7 @@ namespace HooAsset.Editor.Build
                 // 记录版本文件信息
                 new VersionFileInfo
                 {
-                    name = ManifestHandler.DefaultVersionFileName,
+                    name = Configure.File.GetDefaultVersionFileName(),
                     hash = Utility.Format.ComputeHashFromFile(versionContainerFilePath),
                     size = new FileInfo(versionContainerFilePath).Length
                 }
@@ -998,7 +998,7 @@ namespace HooAsset.Editor.Build
         static List<ManifestVersion> GetBuildManifestVersionList()
         {
             ManifestVersionContainer versionContainer = null;
-            string versionContainerFilePath = BuildUtils.TranslateToBuildPath(ManifestHandler.VersionFileName);
+            string versionContainerFilePath = BuildUtils.TranslateToBuildPath(Configure.File.GetVersionFileName());
             if (File.Exists(versionContainerFilePath))
             {
                 versionContainer = ManifestHandler.LoadManifestVersionContainer(versionContainerFilePath);
@@ -1019,7 +1019,7 @@ namespace HooAsset.Editor.Build
             }
 
             // 版本文件
-            CopyBuildPathFileToStreamingAssetsPath(ManifestHandler.VersionFileName);
+            CopyBuildPathFileToStreamingAssetsPath(Configure.File.GetVersionFileName());
 
             foreach (ManifestVersion manifestVersion in manifestVersions)
             {

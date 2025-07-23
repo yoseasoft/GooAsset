@@ -32,16 +32,16 @@ namespace HooAsset
         /// <summary>
         /// 资源秘钥管理定义类
         /// </summary>
-        internal static class Secret
+        public static class Secret
         {
             /// <summary>
             /// 是否加密清单文件和版本文件并隐藏真实的文件名
             /// </summary>
             public static readonly bool ManifestFileEncryptEnabled = true;
 
-            public const string Gd4H = "diKj530tJ6gzqRhAsMIu5YbxPee8H4dg";
+            internal const string Gd4H = "diKj530tJ6gzqRhAsMIu5YbxPee8H4dg";
 
-            public const string ZNfR = "xyN8sJI7IMRfNzD5";
+            internal const string ZNfR = "xyN8sJI7IMRfNzD5";
         }
     }
 }

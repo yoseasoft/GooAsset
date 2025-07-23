@@ -163,8 +163,8 @@ namespace HooAsset
         /// </summary>
         void LoadBuildInManifestVersionListAsync()
         {
-            _buildInVersionFileSavePath = AssetPath.TransferToTempPath(ManifestHandler.VersionFileName);
-            string buildInVersionFileUrl = AssetPath.TranslateToLocalDataPathUrl(ManifestHandler.VersionFileName);
+            _buildInVersionFileSavePath = AssetPath.TransferToTempPath(Configure.File.GetVersionFileName());
+            string buildInVersionFileUrl = AssetPath.TranslateToLocalDataPathUrl(Configure.File.GetVersionFileName());
             _buildInVersionFileCopyRequest = CopyFileFromStreamingAssetsAsync(buildInVersionFileUrl, _buildInVersionFileSavePath);
             _step = Step.LoadingBuildInManifestVersionContainer;
         }
@@ -204,7 +204,7 @@ namespace HooAsset
         /// </summary>
         void OnLoadingDownloadedManifestVersionList()
         {
-            string downloadedVersionFileSavePath = AssetPath.TranslateToDownloadDataPath(ManifestHandler.VersionFileName);
+            string downloadedVersionFileSavePath = AssetPath.TranslateToDownloadDataPath(Configure.File.GetVersionFileName());
             if (File.Exists(downloadedVersionFileSavePath))
                 _downloadedManifestVersionContainer = ManifestHandler.LoadManifestVersionContainer(downloadedVersionFileSavePath);
 

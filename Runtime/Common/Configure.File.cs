@@ -39,28 +39,37 @@ namespace HooAsset
             /// <summary>
             /// 默认版本文件名字
             /// </summary>
-            public const string DefaultVersionFileName = "version";
+            const string DefaultVersionFileName = "version";
             /// <summary>
             /// 默认白名单版本文件名字
             /// </summary>
-            public const string DefaultWhiteListVersionFileName = "white_list_version";
+            const string DefaultWhiteListVersionFileName = "white_list_version";
             /// <summary>
             /// 加密版本文件名字
             /// </summary>
-            public const string EncryptVersionFileName = "d4a27b33a023fdabc304433a38a64e11";
+            const string EncryptVersionFileName = "d4a27b33a023fdabc304433a38a64e11";
             /// <summary>
             /// 加密白名单版本文件名字
             /// </summary>
-            public const string EncryptWhiteListVersionFileName = "33a38a6422e11d4a27b33a023fdabc28";
+            const string EncryptWhiteListVersionFileName = "33a38a6422e11d4a27b33a023fdabc28";
 
             /// <summary>
             /// 默认版本文件的扩展名
             /// </summary>
-            public const string DefaultVersionFileExtensionName = ".json";
+            const string DefaultVersionFileExtensionName = ".json";
             /// <summary>
             /// 加密版本文件的扩展名
             /// </summary>
-            public const string EncryptVersionFileExtensionName = ".unity3d";
+            const string EncryptVersionFileExtensionName = ".unity3d";
+
+            /// <summary>
+            /// 获取默认的版本文件名称，不论加密模式是否开启，均使用原始名字
+            /// </summary>
+            /// <returns>返回默认的版本文件名称</returns>
+            public static string GetDefaultVersionFileName()
+            {
+                return $"{DefaultVersionFileName}{DefaultVersionFileExtensionName}";
+            }
 
             /// <summary>
             /// 获取版本文件名称
@@ -71,7 +80,7 @@ namespace HooAsset
             {
                 if (version > 0)
                 {
-                    if (IsEncryptManifestFile)
+                    if (Secret.ManifestFileEncryptEnabled)
                     {
                         return $"{Utility.Format.ComputeHashFromString($"{EncryptVersionFileName}_v{version}")}{EncryptVersionFileExtensionName}";
                     }
@@ -82,7 +91,7 @@ namespace HooAsset
                 }
                 else
                 {
-                    if (IsEncryptManifestFile)
+                    if (Secret.ManifestFileEncryptEnabled)
                     {
                         return $"{EncryptVersionFileName}{EncryptVersionFileExtensionName}";
                     }
@@ -99,7 +108,7 @@ namespace HooAsset
             /// <returns>返回白名单版本文件名称</returns>
             public static string GetWhiteListVersionFileName()
             {
-                if (IsEncryptManifestFile)
+                if (Secret.ManifestFileEncryptEnabled)
                 {
                     return $"{EncryptWhiteListVersionFileName}{EncryptVersionFileExtensionName}";
                 }

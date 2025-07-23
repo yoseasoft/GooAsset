@@ -115,7 +115,7 @@ namespace HooAsset.Editor.Build
         /// </summary>
         public static Manifest GetManifest(string manifestName)
         {
-            string versionContainerFilePath = TranslateToBuildPath(ManifestHandler.VersionFileName);
+            string versionContainerFilePath = TranslateToBuildPath(Configure.File.GetVersionFileName());
             if (!File.Exists(versionContainerFilePath))
             {
                 return null;

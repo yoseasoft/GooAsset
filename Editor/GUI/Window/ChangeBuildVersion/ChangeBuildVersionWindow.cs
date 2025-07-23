@@ -59,7 +59,7 @@ namespace HooAsset.Editor.GUI
 
         void OnEnable()
         {
-            _versionFilePath = BuildUtils.TranslateToBuildPath(ManifestHandler.VersionFileName);
+            _versionFilePath = BuildUtils.TranslateToBuildPath(Configure.File.GetVersionFileName());
             if (File.Exists(_versionFilePath))
                 _versionContainer = ManifestHandler.LoadManifestVersionContainer(_versionFilePath);
             if (!_versionContainer)
@@ -108,8 +108,8 @@ namespace HooAsset.Editor.GUI
             // 原文件
             File.WriteAllText(_versionFilePath, json);
 
-            string oldVersionFileWithVersionName = ManifestHandler.GetVersionFileNameWithVersion(oldVersion);
-            string newVersionFileWithVersionName = ManifestHandler.GetVersionFileNameWithVersion(_inputVersion);
+            string oldVersionFileWithVersionName = Configure.File.GetVersionFileName(oldVersion);
+            string newVersionFileWithVersionName = Configure.File.GetVersionFileName(_inputVersion);
 
             // 带版本号文件(打包目录)
             string oldVersionFileWithVersionPath = BuildUtils.TranslateToBuildPath(oldVersionFileWithVersionName);

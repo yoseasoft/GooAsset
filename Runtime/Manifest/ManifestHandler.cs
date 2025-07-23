@@ -47,51 +47,6 @@ namespace HooAsset
         static readonly Dictionary<string, Manifest> s_nameToManifest = new();
 
         /// <summary>
-        /// 默认版本文件名字
-        /// </summary>
-        public const string DefaultVersionFileName = "version.json";
-
-        /// <summary>
-        /// 版本信息文件名
-        /// </summary>
-        public static string VersionFileName
-        {
-            get
-            {
-                if (Configure.Secret.ManifestFileEncryptEnabled)
-                {
-                    // 一段自己写的致未来的寄语转成的md5值, 后缀unity3d是为了和ab包一样, 以达到混淆的效果
-                    return "d4a27b33a023fdabc304433a38a64e11.unity3d";
-                }
-
-                return DefaultVersionFileName;
-            }
-        }
-
-        /// <summary>
-        /// 默认白名单版本文件名字
-        /// </summary>
-        const string DefaultWhiteListVersionFileName = "whiteListVersion.json";
-
-        /// <summary>
-        /// 白名单版本信息文件名
-        /// </summary>
-        public static string WhiteListVersionFileName => Configure.Secret.ManifestFileEncryptEnabled ? "33a38a6422e11d4a27b33a023fdabc28.unity3d" : DefaultWhiteListVersionFileName;
-
-        /// <summary>
-        /// 获取带版本号的版本信息文件名
-        /// </summary>
-        public static string GetVersionFileNameWithVersion(int version)
-        {
-            if (Configure.Secret.ManifestFileEncryptEnabled)
-            {
-                return $"{Utility.Format.ComputeHashFromString($"d4a27b33a023fdabc304433a38a64e11_v{version}")}.unity3d";
-            }
-
-            return $"version_v{version}.json";
-        }
-
-        /// <summary>
         /// 清单文件对象和版本文件对象转换成字符串
         /// </summary>
         public static string ManifestObjectToJson(ScriptableObject scriptableObject)

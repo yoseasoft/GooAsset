@@ -94,21 +94,21 @@ namespace HooAsset
 
             if (IsWhiteList)
             {
-                downloadUrl = AssetPath.TranslateToDownloadUrl(ManifestHandler.WhiteListVersionFileName);
+                downloadUrl = AssetPath.TranslateToDownloadUrl(Configure.File.GetWhiteListVersionFileName());
             }
             else
             {
                 if (Version > 0)
                 {
-                    downloadUrl = AssetPath.TranslateToDownloadUrl(ManifestHandler.GetVersionFileNameWithVersion(Version));
+                    downloadUrl = AssetPath.TranslateToDownloadUrl(Configure.File.GetVersionFileName(Version));
                 }
                 else
                 {
-                    downloadUrl = AssetPath.TranslateToDownloadUrl(ManifestHandler.VersionFileName);
+                    downloadUrl = AssetPath.TranslateToDownloadUrl(Configure.File.GetVersionFileName());
                 }
             }
 
-            _downloadSavePath = AssetPath.TranslateToDownloadDataPath(ManifestHandler.VersionFileName);
+            _downloadSavePath = AssetPath.TranslateToDownloadDataPath(Configure.File.GetVersionFileName());
             if (File.Exists(_downloadSavePath))
             {
                 File.Delete(_downloadSavePath);
@@ -142,7 +142,7 @@ namespace HooAsset
                 return;
             }
 
-            string buildInVersionContainerPath = AssetPath.TransferToTempPath(ManifestHandler.VersionFileName);
+            string buildInVersionContainerPath = AssetPath.TransferToTempPath(Configure.File.GetVersionFileName());
             ManifestVersionContainer buildInVersionContainer = ManifestHandler.LoadManifestVersionContainer(buildInVersionContainerPath);
             if (buildInVersionContainer is null)
             {

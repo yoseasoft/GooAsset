@@ -50,7 +50,7 @@ namespace HooAsset
             List<string> usedFileNameList = new(); // 当前使用的文件
 
             // 版本文件
-            usedFileNameList.Add(ManifestHandler.VersionFileName);
+            usedFileNameList.Add(Configure.File.GetVersionFileName());
 
             foreach (Manifest manifest in ManifestHandler.ManifestList)
             {

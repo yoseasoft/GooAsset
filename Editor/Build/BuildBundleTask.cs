@@ -414,7 +414,7 @@ namespace HooAsset.Editor.Build
                 if (nameToBundleInfo.TryGetValue(assetBundleName, out ManifestBundleInfo manifestBundleInfo))
                 {
                     string fileName = GetAssetBundleFileName(assetBundleName);
-                    if (fileName == ManifestHandler.VersionFileName || fileName == ManifestHandler.WhiteListVersionFileName)
+                    if (fileName == Configure.File.GetVersionFileName() || fileName == Configure.File.GetWhiteListVersionFileName())
                     {
                         Debug.LogError($"ab包的Hash值与版本文件冲突:{assetBundleName}, 可以尝试微改一下此资源重新打包");
                         return false;
@@ -473,8 +473,8 @@ namespace HooAsset.Editor.Build
 
             // 重命名文件(使用hash用作文件后缀)
             string hash = Utility.Format.ComputeHashFromFile(filePath);
-            string newFileName = ManifestHandler.IsEncryptManifestFile ? (hash + BuildUtils.AssetBundleFileExtension) : $"{_manifestName}_{hash}.json";
-            if (newFileName == ManifestHandler.VersionFileName || newFileName == ManifestHandler.WhiteListVersionFileName)
+            string newFileName = Configure.Secret.ManifestFileEncryptEnabled ? (hash + BuildUtils.AssetBundleFileExtension) : $"{_manifestName}_{hash}.json";
+            if (newFileName == Configure.File.GetVersionFileName() || newFileName == Configure.File.GetWhiteListVersionFileName())
             {
                 Debug.LogError($"清单文件的Hash值与版本文件冲突:{manifest.name}, 可以尝试随便改一个资源重新打包");
                 return false;
