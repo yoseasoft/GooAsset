@@ -178,7 +178,7 @@ namespace HooAsset
         {
             foreach (var manifest in ManifestList)
             {
-                if (manifest.IsContainAsset(assetPath))
+                if (manifest.IsAssetContains(assetPath))
                 {
                     return true;
                 }
@@ -198,7 +198,7 @@ namespace HooAsset
         {
             foreach (Manifest manifest in ManifestList)
             {
-                if (manifest.IsContainAsset(assetPath))
+                if (manifest.IsAssetContains(assetPath))
                 {
                     mainBundleInfo = manifest.GetBundleInfo(assetPath);
                     dependentBundleInfoList = manifest.GetDependentBundleInfoList(mainBundleInfo);
@@ -219,7 +219,7 @@ namespace HooAsset
         {
             foreach (Manifest manifest in ManifestList)
             {
-                if (manifest.IsContainAsset(assetPath))
+                if (manifest.IsAssetContains(assetPath))
                 {
                     return manifest.GetBundleInfo(assetPath);
                 }

@@ -55,7 +55,7 @@ namespace HooAsset
         /// <summary>
         /// 是否有加载中或卸载中的场景
         /// </summary>
-        public static bool HasLoadingOrUnloadingScene => s_runningAsyncOperationList.Count > 0;
+        public static bool IsLoadingOrUnloadingScene => s_runningAsyncOperationList.Count > 0;
 
         /// <summary>
         /// 同步加载场景

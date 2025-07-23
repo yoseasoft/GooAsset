@@ -88,7 +88,7 @@ namespace HooAsset
         /// 判断此清单是否包含某个资源
         /// </summary>
         /// <param name="assetPath">资源路径</param>
-        public bool IsContainAsset(string assetPath)
+        public bool IsAssetContains(string assetPath)
         {
             return _assetPathToBundleInfo.ContainsKey(assetPath);
         }
@@ -114,21 +114,21 @@ namespace HooAsset
         /// <summary>
         /// 空清单包信息列表
         /// </summary>
-        static readonly ManifestBundleInfo[] s_emptyBundleInfoList = Array.Empty<ManifestBundleInfo>();
+        static readonly ManifestBundleInfo[] _emptyBundleInfoList = Array.Empty<ManifestBundleInfo>();
 
         /// <summary>
         /// 根据清单包信息获取该包的依赖包信息列表
         /// </summary>
         public ManifestBundleInfo[] GetDependentBundleInfoList(ManifestBundleInfo bundle)
         {
-            return bundle?.DependentBundleIDList == null ? s_emptyBundleInfoList : Array.ConvertAll(bundle.DependentBundleIDList, index => manifestBundleInfoList[index]);
+            return bundle?.DependentBundleIDList == null ? _emptyBundleInfoList : Array.ConvertAll(bundle.DependentBundleIDList, index => manifestBundleInfoList[index]);
         }
 
 #if UNITY_EDITOR
         /// <summary>
         /// 空清单包信息对象
         /// </summary>
-        static readonly ManifestBundleInfo s_emptyBundleInfo = new();
+        static readonly ManifestBundleInfo _emptyBundleInfo = new();
 
         /// <summary>
         /// 记录资源路径, 但使用空的清单包信息
@@ -137,7 +137,7 @@ namespace HooAsset
         /// </summary>
         public void RecordAssetButUseEmptyBundleInfo(string assetPath, ManifestBundleInfo manifestBundleInfo = null)
         {
-            _assetPathToBundleInfo[assetPath] = manifestBundleInfo ?? s_emptyBundleInfo;
+            _assetPathToBundleInfo[assetPath] = manifestBundleInfo ?? _emptyBundleInfo;
             AssetPath.RecordCustomLoadPath(assetPath);
         }
 #endif
