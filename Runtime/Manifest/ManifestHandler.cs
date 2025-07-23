@@ -37,15 +37,6 @@ namespace HooAsset
     public static class ManifestHandler
     {
         /// <summary>
-        /// 是否加密清单文件和版本文件并隐藏真实的文件名
-        /// </summary>
-        public static readonly bool IsEncryptManifestFile = true;
-
-        private const string Gd4H = "diKj530tJ6gzqRhAsMIu5YbxPee8H4dg";
-
-        private const string ZNfR = "xyN8sJI7IMRfNzD5";
-
-        /// <summary>
         /// 当前所有清单的列表
         /// </summary>
         public static readonly List<Manifest> ManifestList = new();
@@ -67,7 +58,7 @@ namespace HooAsset
         {
             get
             {
-                if (IsEncryptManifestFile)
+                if (Configure.Secret.ManifestFileEncryptEnabled)
                 {
                     // 一段自己写的致未来的寄语转成的md5值, 后缀unity3d是为了和ab包一样, 以达到混淆的效果
                     return "d4a27b33a023fdabc304433a38a64e11.unity3d";
@@ -85,14 +76,14 @@ namespace HooAsset
         /// <summary>
         /// 白名单版本信息文件名
         /// </summary>
-        public static string WhiteListVersionFileName => IsEncryptManifestFile ? "33a38a6422e11d4a27b33a023fdabc28.unity3d" : DefaultWhiteListVersionFileName;
+        public static string WhiteListVersionFileName => Configure.Secret.ManifestFileEncryptEnabled ? "33a38a6422e11d4a27b33a023fdabc28.unity3d" : DefaultWhiteListVersionFileName;
 
         /// <summary>
         /// 获取带版本号的版本信息文件名
         /// </summary>
         public static string GetVersionFileNameWithVersion(int version)
         {
-            if (IsEncryptManifestFile)
+            if (Configure.Secret.ManifestFileEncryptEnabled)
             {
                 return $"{Utility.Format.ComputeHashFromString($"d4a27b33a023fdabc304433a38a64e11_v{version}")}.unity3d";
             }
@@ -105,9 +96,9 @@ namespace HooAsset
         /// </summary>
         public static string ManifestObjectToJson(ScriptableObject scriptableObject)
         {
-            if (IsEncryptManifestFile)
+            if (Configure.Secret.ManifestFileEncryptEnabled)
             {
-                return Utility.Cryptography.Encrypt(JsonUtility.ToJson(scriptableObject), Gd4H, ZNfR);
+                return Utility.Cryptography.Encrypt(JsonUtility.ToJson(scriptableObject), Configure.Secret.Gd4H, Configure.Secret.ZNfR);
             }
 
             return JsonUtility.ToJson(scriptableObject);
@@ -118,9 +109,9 @@ namespace HooAsset
         /// </summary>
         static string GetFileJson(string filePath)
         {
-            if (IsEncryptManifestFile)
+            if (Configure.Secret.ManifestFileEncryptEnabled)
             {
-                return Utility.Cryptography.Decrypt(File.ReadAllText(filePath), Gd4H, ZNfR);
+                return Utility.Cryptography.Decrypt(File.ReadAllText(filePath), Configure.Secret.Gd4H, Configure.Secret.ZNfR);
             }
 
             return File.ReadAllText(filePath);
