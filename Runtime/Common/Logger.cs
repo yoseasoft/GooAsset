@@ -118,5 +118,14 @@ namespace HooAsset
                 _errorCallback(format, args);
             }
         }
+
+        /// <summary>
+        /// 异常模式下的日志输出接口函数
+        /// </summary>
+        /// <param name="e">异常实例</param>
+        public static void Exception(System.Exception e)
+        {
+            UnityEngine.Debug.LogException(e);
+        }
     }
 }

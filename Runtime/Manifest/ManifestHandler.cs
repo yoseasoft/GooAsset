@@ -24,10 +24,12 @@
 /// THE SOFTWARE.
 /// -------------------------------------------------------------------------------
 
-using System;
-using System.IO;
-using UnityEngine;
 using System.Collections.Generic;
+
+using UnityEngine;
+
+using SystemFile = System.IO.File;
+using SystemFileInfo = System.IO.FileInfo;
 
 namespace HooAsset
 {
@@ -39,37 +41,41 @@ namespace HooAsset
         /// <summary>
         /// 当前所有清单的列表
         /// </summary>
-        public static readonly List<Manifest> ManifestList = new();
+        private static readonly IList<Manifest> _manifestList = new List<Manifest>();
 
         /// <summary>
         /// 清单名字和清单的对照字典
         /// </summary>
-        static readonly Dictionary<string, Manifest> s_nameToManifest = new();
+        static readonly Dictionary<string, Manifest> _nameToManifest = new();
+
+        public static IList<Manifest> ManifestList => _manifestList;
 
         /// <summary>
         /// 清单文件对象和版本文件对象转换成字符串
         /// </summary>
         public static string ManifestObjectToJson(ScriptableObject scriptableObject)
         {
+            string text = JsonUtility.ToJson(scriptableObject);
             if (Configure.Secret.ManifestFileEncryptEnabled)
             {
-                return Utility.Cryptography.Encrypt(JsonUtility.ToJson(scriptableObject), Configure.Secret.Gd4H, Configure.Secret.ZNfR);
+                text = Utility.Cryptography.Encrypt(text, Configure.Secret.Gd4H, Configure.Secret.ZNfR);
             }
 
-            return JsonUtility.ToJson(scriptableObject);
+            return text;
         }
 
         /// <summary>
-        /// 获取指定清单文件或版本文件文件的Json字符串
+        /// 获取指定清单文件或版本文件文件的内容
         /// </summary>
-        static string GetFileJson(string filePath)
+        static string ReadFileText(string filePath)
         {
+            string text = SystemFile.ReadAllText(filePath);
             if (Configure.Secret.ManifestFileEncryptEnabled)
             {
-                return Utility.Cryptography.Decrypt(File.ReadAllText(filePath), Configure.Secret.Gd4H, Configure.Secret.ZNfR);
+                return Utility.Cryptography.Decrypt(text, Configure.Secret.Gd4H, Configure.Secret.ZNfR);
             }
 
-            return File.ReadAllText(filePath);
+            return text;
         }
 
         /// <summary>
@@ -77,9 +83,9 @@ namespace HooAsset
         /// </summary>
         public static ManifestVersionContainer LoadManifestVersionContainer(string versionFilePath)
         {
-            if (!File.Exists(versionFilePath))
+            if (!SystemFile.Exists(versionFilePath))
             {
-                Logger.Error($"版本文件不存在！！目录:{versionFilePath}");
+                Logger.Error($"无法找到指定路径“{versionFilePath}”下的版本文件，加载目标文件失败！");
                 return null;
             }
 
@@ -88,13 +94,13 @@ namespace HooAsset
             try
             {
                 manifestVersionContainer = ScriptableObject.CreateInstance<ManifestVersionContainer>();
-                JsonUtility.FromJsonOverwrite(GetFileJson(versionFilePath), manifestVersionContainer);
+                JsonUtility.FromJsonOverwrite(ReadFileText(versionFilePath), manifestVersionContainer);
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
                 manifestVersionContainer = null;
-                Debug.LogException(e);
-                File.Delete(versionFilePath);
+                Logger.Exception(e);
+                SystemFile.Delete(versionFilePath);
             }
 
             return manifestVersionContainer;
@@ -105,7 +111,7 @@ namespace HooAsset
         /// </summary>
         public static Manifest GetManifest(string name)
         {
-            return s_nameToManifest.GetValueOrDefault(name);
+            return _nameToManifest.GetValueOrDefault(name);
         }
 
         /// <summary>
@@ -113,9 +119,9 @@ namespace HooAsset
         /// </summary>
         public static Manifest LoadManifest(string manifestFilePath)
         {
-            if (!File.Exists(manifestFilePath))
+            if (!SystemFile.Exists(manifestFilePath))
             {
-                Logger.Error($"清单文件不存在！！目录:{manifestFilePath}");
+                Logger.Error($"无法找到指定路径“{manifestFilePath}”下的清单文件，加载目标文件失败！");
                 return null;
             }
 
@@ -124,14 +130,14 @@ namespace HooAsset
             try
             {
                 manifest = ScriptableObject.CreateInstance<Manifest>();
-                JsonUtility.FromJsonOverwrite(GetFileJson(manifestFilePath), manifest);
+                JsonUtility.FromJsonOverwrite(ReadFileText(manifestFilePath), manifest);
                 manifest.Reload();
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
                 manifest = null;
-                Debug.LogException(e);
-                File.Delete(manifestFilePath);
+                Logger.Exception(e);
+                SystemFile.Delete(manifestFilePath);
             }
 
             return manifest;
@@ -143,14 +149,14 @@ namespace HooAsset
         public static void RefreshGlobalManifest(Manifest manifest)
         {
             string manifestName = manifest.name;
-            if (s_nameToManifest.TryGetValue(manifestName, out Manifest m))
+            if (_nameToManifest.TryGetValue(manifestName, out Manifest m))
             {
                 m.OverrideManifest(manifest);
                 return;
             }
 
-            ManifestList.Add(manifest);
-            s_nameToManifest.Add(manifestName, manifest);
+            _manifestList.Add(manifest);
+            _nameToManifest.Add(manifestName, manifest);
         }
 
         /// <summary>
@@ -158,7 +164,7 @@ namespace HooAsset
         /// </summary>
         public static bool IsManifestEffective(ManifestVersion manifestVersion)
         {
-            return s_nameToManifest.TryGetValue(manifestVersion.Name, out Manifest m) && m.fileName == manifestVersion.FileName;
+            return _nameToManifest.TryGetValue(manifestVersion.Name, out Manifest m) && m.fileName == manifestVersion.FileName;
         }
 
         /// <summary>
@@ -166,7 +172,7 @@ namespace HooAsset
         /// </summary>
         public static bool IsManifestFileExist(ManifestVersion manifestVersion)
         {
-            FileInfo info = new FileInfo(AssetPath.TranslateToDownloadDataPath(manifestVersion.FileName));
+            SystemFileInfo info = new SystemFileInfo(AssetPath.TranslateToDownloadDataPath(manifestVersion.FileName));
             return info.Exists && info.Length == manifestVersion.Size && Utility.Format.ComputeHashFromFile(info.FullName) == manifestVersion.Hash;
         }
 
@@ -174,9 +180,9 @@ namespace HooAsset
         /// 判断全部清单中是否包含某个资源
         /// </summary>
         /// <param name="assetPath">资源路径</param>
-        public static bool IsContainAsset(string assetPath)
+        public static bool IsAssetContains(string assetPath)
         {
-            foreach (var manifest in ManifestList)
+            foreach (var manifest in _manifestList)
             {
                 if (manifest.IsAssetContains(assetPath))
                 {
@@ -196,7 +202,7 @@ namespace HooAsset
         /// <returns>清单中是否存在此资源</returns>
         public static bool GetMainBundleInfoAndDependencies(string assetPath, out ManifestBundleInfo mainBundleInfo, out ManifestBundleInfo[] dependentBundleInfoList)
         {
-            foreach (Manifest manifest in ManifestList)
+            foreach (Manifest manifest in _manifestList)
             {
                 if (manifest.IsAssetContains(assetPath))
                 {
@@ -217,7 +223,7 @@ namespace HooAsset
         /// <param name="assetPath">资源真实路径</param>
         public static ManifestBundleInfo GetManifestBundleInfo(string assetPath)
         {
-            foreach (Manifest manifest in ManifestList)
+            foreach (Manifest manifest in _manifestList)
             {
                 if (manifest.IsAssetContains(assetPath))
                 {

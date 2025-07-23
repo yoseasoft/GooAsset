@@ -66,7 +66,7 @@ namespace HooAsset
         internal static Asset LoadAsync(string address, Type type, Action<Asset> completed = null)
         {
             string path = AssetPath.GetActualPath(address);
-            if (!ManifestHandler.IsContainAsset(path))
+            if (!ManifestHandler.IsAssetContains(path))
             {
                 Logger.Error($"资源加载失败, 因所有资源清单中都没有此资源的记录:{path}");
                 return null;

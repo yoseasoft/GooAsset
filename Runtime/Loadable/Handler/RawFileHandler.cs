@@ -64,7 +64,7 @@ namespace HooAsset
         /// <param name="completed">完成回调</param>
         internal static RawFile LoadAsync(string filePath, Action<RawFile> completed = null)
         {
-            if (!ManifestHandler.IsContainAsset(filePath))
+            if (!ManifestHandler.IsAssetContains(filePath))
             {
                 Logger.Error($"原始资源文件加载失败, 因所有资源清单中都没有此文件的记录:{filePath}");
                 return null;

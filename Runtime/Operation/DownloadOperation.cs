@@ -37,7 +37,7 @@ namespace HooAsset
         /// <summary>
         /// 需要下载的信息列表
         /// </summary>
-        public readonly List<DownloadInfo> needDownloadInfoList = new();
+        readonly List<DownloadInfo> _needDownloadInfoList = new();
 
         /// <summary>
         /// 正在下载的Download对象列表
@@ -78,9 +78,9 @@ namespace HooAsset
         /// 下载操作
         /// </summary>
         /// <param name="downloadInfoList">需要下载的下载信息列表</param>
-        public DownloadOperation(List<DownloadInfo> downloadInfoList)
+        public DownloadOperation(IList<DownloadInfo> downloadInfoList)
         {
-            needDownloadInfoList.AddRange(downloadInfoList);
+            _needDownloadInfoList.AddRange(downloadInfoList);
         }
 
         protected override void OnStart()
@@ -89,11 +89,11 @@ namespace HooAsset
                 return;
 
             DownloadedBytes = 0;
-            foreach (DownloadInfo downloadInfo in needDownloadInfoList)
+            foreach (DownloadInfo downloadInfo in _needDownloadInfoList)
                 TotalSize += downloadInfo.size;
 
-            if (needDownloadInfoList.Count > 0)
-                foreach (DownloadInfo downloadInfo in needDownloadInfoList)
+            if (_needDownloadInfoList.Count > 0)
+                foreach (DownloadInfo downloadInfo in _needDownloadInfoList)
                     _downloadingList.Add(DownloadHandler.DownloadAsync(downloadInfo));
             else
                 Finish();
@@ -157,7 +157,15 @@ namespace HooAsset
             else
             {
                 updated = null;
-                Finish(_failedDownloadList.Count > 0 ? $"有{_failedDownloadList.Count}个文件下载失败, 首个文件失败原因:{_failedDownloadList[0].Error}" : null);
+
+                if (_failedDownloadList.Count > 0)
+                {
+                    Finish($"共有{_failedDownloadList.Count}个文件下载失败, 首个文件失败原因：{_failedDownloadList[0].Error}");
+                }
+                else
+                {
+                    Finish();
+                }
             }
         }
     }

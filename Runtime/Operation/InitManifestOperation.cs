@@ -248,7 +248,7 @@ namespace HooAsset
                 }
             }
 
-            List<ManifestVersion> needLoadManifestVersionList;
+            IList<ManifestVersion> needLoadManifestVersionList;
 
             if (isLoadDownloadedVersion)
             {
@@ -312,9 +312,9 @@ namespace HooAsset
             }
 
             // 加载清单并进行记录
-            for (int i = 0; i < _loadingManifestVersionList.Count; i++)
+            for (int n = 0; n < _loadingManifestVersionList.Count; ++n)
             {
-                ManifestVersion manifestVersion = _loadingManifestVersionList[i];
+                ManifestVersion manifestVersion = _loadingManifestVersionList[n];
                 string manifestFilePath;
                 if (AssetManagement.isOfflineWindows)
                     manifestFilePath = AssetPath.TranslateToLocalDataPath(manifestVersion.FileName);
@@ -331,9 +331,10 @@ namespace HooAsset
                 manifest.fileName = manifestVersion.FileName;
 
                 ManifestHandler.RefreshGlobalManifest(manifest);
-                _loadingManifestVersionList.RemoveAt(i);
-                i--;
-                Progress = BuildInContainerProportion + (1 - loadManifestProportion) + (float)(i + 1) / _loadingManifestVersionList.Count * loadManifestProportion;
+                _loadingManifestVersionList.RemoveAt(n);
+                --n;
+
+                Progress = BuildInContainerProportion + (1 - loadManifestProportion) + (float) (n + 1) / _loadingManifestVersionList.Count * loadManifestProportion;
 
                 if (AssetDispatcher.Instance.IsBusy)
                     return;

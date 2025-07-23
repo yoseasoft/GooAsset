@@ -154,7 +154,7 @@ namespace HooAsset
             LoadSceneMode loadSceneMode = isAdditive ? LoadSceneMode.Additive : LoadSceneMode.Single;
 
             // 清单中有的使用打包场景加载
-            if (ManifestHandler.IsContainAsset(assetPath))
+            if (ManifestHandler.IsAssetContains(assetPath))
                 return new BundledScene { address = assetPath, loadSceneMode = loadSceneMode };
 
             // 清单中没有的视为使用ScenesInBuild的场景加载

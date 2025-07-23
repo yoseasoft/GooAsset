@@ -52,7 +52,7 @@ namespace HooAsset.Editor.Simulation
                 return null;
             }
 
-            if (!ManifestHandler.IsContainAsset(assetPath))
+            if (!ManifestHandler.IsAssetContains(assetPath))
             {
                 Debug.LogError($"场景加载失败, 因所有资源清单中都不存在此资源:{assetPath}");
                 return null;

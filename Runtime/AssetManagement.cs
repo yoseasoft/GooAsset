@@ -127,7 +127,7 @@ namespace HooAsset
         /// 开始下载操作
         /// </summary>
         /// <param name="downloadInfoList">需下载的列表</param>
-        public static DownloadOperation DownloadAsync(List<DownloadInfo> downloadInfoList)
+        public static DownloadOperation DownloadAsync(IList<DownloadInfo> downloadInfoList)
         {
             DownloadOperation operation = new DownloadOperation(downloadInfoList);
             operation.Start();
@@ -248,7 +248,7 @@ namespace HooAsset
         /// <param name="manifestList">用于获取的清单列表</param>
         /// <param name="assetPathList">资源真实路径列表</param>
         /// <returns>资源包信息列表</returns>
-        static List<ManifestBundleInfo> GetNeedDownloadBundleInfoListByAssetPath(List<Manifest> manifestList, string[] assetPathList)
+        static List<ManifestBundleInfo> GetNeedDownloadBundleInfoListByAssetPath(IList<Manifest> manifestList, string[] assetPathList)
         {
             var bundleInfoList = new List<ManifestBundleInfo>();
             if (assetPathList == null || assetPathList.Length == 0)
