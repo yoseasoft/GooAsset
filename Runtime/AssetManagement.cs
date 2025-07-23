@@ -112,7 +112,7 @@ namespace HooAsset
         /// </summary>
         /// <param name="assetPathList">资源真实路径列表</param>
         /// <param name="manifestList">查找所用的清单列表, 不填则使用全局的清单列表</param>
-        public static GetDownloadSizeOperation GetDownloadSizeAsync(string[] assetPathList, List<Manifest> manifestList = null)
+        public static GetDownloadSizeOperation GetDownloadSizeAsync(string[] assetPathList, IList<Manifest> manifestList = null)
         {
             List<ManifestBundleInfo> manifestBundleInfoList = null;
             if (!offlineMode)

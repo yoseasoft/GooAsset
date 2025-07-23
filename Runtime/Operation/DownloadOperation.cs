@@ -24,7 +24,6 @@
 /// THE SOFTWARE.
 /// -------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 
 namespace HooAsset
@@ -62,7 +61,7 @@ namespace HooAsset
         /// <summary>
         /// 每帧刷新监听
         /// </summary>
-        public Action<DownloadOperation> updated;
+        public System.Action<DownloadOperation> updated;
 
         /// <summary>
         /// 下载总大小(单位:字节(B))

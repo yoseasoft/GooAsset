@@ -25,8 +25,9 @@
 /// -------------------------------------------------------------------------------
 
 using System.IO;
-using UnityEngine;
 using System.Collections.Generic;
+
+using UnityEngine;
 
 namespace HooAsset
 {
@@ -43,7 +44,7 @@ namespace HooAsset
         /// <summary>
         /// 通过bundle信息计算后, 需要下载的下载信息列表
         /// </summary>
-        public readonly List<DownloadInfo> downloadInfoResults = new();
+        readonly List<DownloadInfo> _downloadInfoResults = new();
 
         /// <summary>
         /// 总共大小(单位:字节(B))
@@ -54,7 +55,7 @@ namespace HooAsset
         /// 获取下载大小的操作
         /// </summary>
         /// <param name="bundleInfoList">需要获取下载大小的清单bundle信息列表</param>
-        public GetDownloadSizeOperation(List<ManifestBundleInfo> bundleInfoList = null)
+        public GetDownloadSizeOperation(IList<ManifestBundleInfo> bundleInfoList = null)
         {
             if (bundleInfoList != null)
             {
@@ -90,7 +91,7 @@ namespace HooAsset
             {
                 ManifestBundleInfo bundleInfo = _bundleInfos[0];
                 string savePath = AssetPath.TranslateToDownloadDataPath(bundleInfo.SaveFileName);
-                if (!AssetManagement.IsBuildInFile(bundleInfo.NameWithHash) && !AssetManagement.IsBundleFileAlreadyInDownloadPath(bundleInfo) && !downloadInfoResults.Exists(info => info.savePath == savePath))
+                if (!AssetManagement.IsBuildInFile(bundleInfo.NameWithHash) && !AssetManagement.IsBundleFileAlreadyInDownloadPath(bundleInfo) && !_downloadInfoResults.Exists(info => info.savePath == savePath))
                 {
                     if (File.Exists(savePath))
                     {
@@ -111,7 +112,7 @@ namespace HooAsset
                         TotalSize += bundleInfo.Size;
                     }
 
-                    downloadInfoResults.Add(new DownloadInfo
+                    _downloadInfoResults.Add(new DownloadInfo
                     {
                         savePath = savePath,
                         hash = bundleInfo.Hash,

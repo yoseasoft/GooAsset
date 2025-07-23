@@ -121,7 +121,7 @@ namespace HooAsset
         /// </summary>
         public ManifestBundleInfo[] GetDependentBundleInfoList(ManifestBundleInfo bundle)
         {
-            return bundle?.DependentBundleIDList == null ? _emptyBundleInfoList : Array.ConvertAll(bundle.DependentBundleIDList, index => manifestBundleInfoList[index]);
+            return bundle?.DependentBundleIdList == null ? _emptyBundleInfoList : Array.ConvertAll(bundle.DependentBundleIdList, index => manifestBundleInfoList[index]);
         }
 
 #if UNITY_EDITOR

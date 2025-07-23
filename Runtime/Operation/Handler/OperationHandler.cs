@@ -66,7 +66,7 @@ namespace HooAsset
                     --n;
 
                     if (operation.Status == OperationStatus.Failed)
-                        Logger.Warning($"操作{operation.GetType().Name}未完成, 原因:{operation.Error}");
+                        Logger.Warning($"操作{operation.GetType().Name}未完成, 失败原因：{operation.Error}！");
 
                     operation.Complete();
                 }

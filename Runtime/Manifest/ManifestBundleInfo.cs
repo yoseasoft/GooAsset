@@ -153,7 +153,7 @@ namespace HooAsset
         /// <summary>
         /// 依赖的包id列表
         /// </summary>
-        public int[] DependentBundleIDList
+        public int[] DependentBundleIdList
         {
             get => d;
             set => d = value;

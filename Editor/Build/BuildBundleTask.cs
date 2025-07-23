@@ -433,7 +433,7 @@ namespace HooAsset.Editor.Build
                         dependentBundleIDList.Add(nameToBundleInfo[depAssetBundleName].ID);
                     }
 
-                    manifestBundleInfo.DependentBundleIDList = dependentBundleIDList.ToArray();
+                    manifestBundleInfo.DependentBundleIdList = dependentBundleIDList.ToArray();
                     string filePath = BuildUtils.TranslateToBuildPath(fileName);
                     if (File.Exists(filePath))
                     {

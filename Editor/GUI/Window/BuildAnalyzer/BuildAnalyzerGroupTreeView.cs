@@ -437,9 +437,9 @@ namespace HooAsset.Editor.GUI
                     {
                         showedBundleIDMap[manifestBundleInfo.ID] = true;
 
-                        if (manifestBundleInfo.DependentBundleIDList != null)
+                        if (manifestBundleInfo.DependentBundleIdList != null)
                         {
-                            foreach (int depedentBundleID in manifestBundleInfo.DependentBundleIDList)
+                            foreach (int depedentBundleID in manifestBundleInfo.DependentBundleIdList)
                             {
                                 if (bundleIDToReferenceGroups.ContainsKey(depedentBundleID))
                                 {
