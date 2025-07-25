@@ -41,7 +41,7 @@ namespace HooAsset
         /// <summary>
         /// 当前所有清单的列表
         /// </summary>
-        private static readonly IList<Manifest> _manifestList = new List<Manifest>();
+        private static readonly List<Manifest> _manifestList = new List<Manifest>();
 
         /// <summary>
         /// 清单名字和清单的对照字典

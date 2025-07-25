@@ -26,11 +26,12 @@
 
 using System;
 using System.IO;
-using System.Text;
+using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEditor;
+
 using HooAsset.Editor.GUI;
-using System.Collections.Generic;
 
 namespace HooAsset.Editor.Build
 {
@@ -49,7 +50,7 @@ namespace HooAsset.Editor.Build
             int manifestCount = BuildUtils.GetAllManifestConfigs().Count;
             if (manifestCount == 0)
             {
-                Debug.Log("请先创建资源清单进行配置");
+                Debug.Log("请先创建资源清单进行配置！");
                 return;
             }
 

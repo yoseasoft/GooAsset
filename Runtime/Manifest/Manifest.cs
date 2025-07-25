@@ -132,7 +132,7 @@ namespace HooAsset
 
         /// <summary>
         /// 记录资源路径, 但使用空的清单包信息
-        /// (主要在编辑器模拟运行时使用, 因加载资源时需判断IsContainAsset(assetPath), 所以此处记录后就可以通过检测)
+        /// (主要在编辑器模拟运行时使用, 因加载资源时需判断IsAssetContains(assetPath), 所以此处记录后就可以通过检测)
         /// (为什么可以使用空的打包信息？ 因模拟运行时不会使用打包文件加载, 会直接使用AssetDatabase.LoadAssetAtPath()加载(可查看EditorAsset.cs), 所以不需要真正的打包信息)
         /// </summary>
         public void RecordAssetButUseEmptyBundleInfo(string assetPath, ManifestBundleInfo manifestBundleInfo = null)

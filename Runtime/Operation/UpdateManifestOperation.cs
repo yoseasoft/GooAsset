@@ -142,7 +142,7 @@ namespace HooAsset
                 return;
             }
 
-            string buildInVersionContainerPath = AssetPath.TransferToTempPath(Configure.File.GetVersionFileName());
+            string buildInVersionContainerPath = AssetPath.TranslateToTempPath(Configure.File.GetVersionFileName());
             ManifestVersionContainer buildInVersionContainer = ManifestHandler.LoadManifestVersionContainer(buildInVersionContainerPath);
             if (buildInVersionContainer is null)
             {
