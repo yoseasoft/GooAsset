@@ -1,7 +1,7 @@
 {
-    "name": "com.yoseasoft.hooasset",
-    "displayName": "HooAsset",
-    "description": "HooAsset Framework Package",
+    "name": "com.yoseasoft.gooasset",
+    "displayName": "GooAsset",
+    "description": "GooAsset Framework Package",
     "version": "1.0.0-prerelease",
     "unity": "2018.3",
     "unityRelease": "0f1",
@@ -10,11 +10,11 @@
     "author": {
         "name": "hurley",
         "email": "yoseasoft@163.com",
-        "url": "https://github.com/yoseasoft/HooAsset"
+        "url": "https://github.com/yoseasoft/GooAsset"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/yoseasoft/HooAsset.git"
+        "url": "https://github.com/yoseasoft/GooAsset.git"
     },
     "relatedPackages": {},
     "dependencies": {
