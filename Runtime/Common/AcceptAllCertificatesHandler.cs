@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -26,7 +26,7 @@
 
 using UnityEngine.Networking;
 
-namespace HooAsset
+namespace GooAsset
 {
     /// <summary>
     /// 使UnityWebRequest直接通过所有证书验证(即不进行任何验证)

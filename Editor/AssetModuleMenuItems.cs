@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -26,10 +26,10 @@
 
 using UnityEngine;
 using UnityEditor;
-using HooAsset.Editor.GUI;
-using HooAsset.Editor.Build;
+using GooAsset.Editor.GUI;
+using GooAsset.Editor.Build;
 
-namespace HooAsset.Editor
+namespace GooAsset.Editor
 {
     /// <summary>
     /// Unity菜单选项

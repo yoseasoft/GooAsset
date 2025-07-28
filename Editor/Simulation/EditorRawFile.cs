@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -26,7 +26,7 @@
 
 using System.IO;
 
-namespace HooAsset.Editor.Simulation
+namespace GooAsset.Editor.Simulation
 {
     /// <summary>
     /// 编辑器下原始文件加载

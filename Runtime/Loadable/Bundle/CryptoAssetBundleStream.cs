@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -28,7 +28,7 @@ using System;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace HooAsset
+namespace GooAsset
 {
     /// <summary>
     /// 加密ab包的文件流

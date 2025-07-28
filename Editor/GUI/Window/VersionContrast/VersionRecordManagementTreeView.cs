@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -29,11 +29,11 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
-using HooAsset.Editor.Build;
+using GooAsset.Editor.Build;
 using UnityEditor.IMGUI.Controls;
 using System.Collections.Generic;
 
-namespace HooAsset.Editor.GUI
+namespace GooAsset.Editor.GUI
 {
     /// <summary>
     /// 版本记录管理窗口的列表Item

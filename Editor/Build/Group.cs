@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -33,7 +33,7 @@ using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using Object = UnityEngine.Object;
 
-namespace HooAsset.Editor.Build
+namespace GooAsset.Editor.Build
 {
     /// <summary>
     /// 打包资源组, 在清单配置里显示

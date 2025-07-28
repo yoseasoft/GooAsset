@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -32,7 +32,7 @@ using System.Threading;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 
-namespace HooAsset
+namespace GooAsset
 {
     /// <summary>
     /// 下载类对象

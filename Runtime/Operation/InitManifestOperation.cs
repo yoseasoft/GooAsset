@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -29,7 +29,7 @@ using System.IO;
 using UnityEngine.Networking;
 using System.Collections.Generic;
 
-namespace HooAsset
+namespace GooAsset
 {
     /// <summary>
     /// 初始化资源清单
@@ -163,7 +163,7 @@ namespace HooAsset
         /// </summary>
         void LoadBuildInManifestVersionListAsync()
         {
-            _buildInVersionFileSavePath = AssetPath.TransferToTempPath(Configure.File.GetVersionFileName());
+            _buildInVersionFileSavePath = AssetPath.TranslateToTempPath(Configure.File.GetVersionFileName());
             string buildInVersionFileUrl = AssetPath.TranslateToLocalDataPathUrl(Configure.File.GetVersionFileName());
             _buildInVersionFileCopyRequest = CopyFileFromStreamingAssetsAsync(buildInVersionFileUrl, _buildInVersionFileSavePath);
             _step = Step.LoadingBuildInManifestVersionContainer;

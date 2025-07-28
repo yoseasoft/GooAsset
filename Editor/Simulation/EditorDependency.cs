@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -29,7 +29,7 @@ using UnityEditor;
 using System.Collections.Generic;
 using Object = UnityEngine.Object;
 
-namespace HooAsset.Editor.Simulation
+namespace GooAsset.Editor.Simulation
 {
     /// <summary>
     /// 编辑器下依赖资源记录和加载

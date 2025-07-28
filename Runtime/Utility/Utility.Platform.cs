@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -26,7 +26,7 @@
 
 using RuntimePlatform = UnityEngine.RuntimePlatform;
 
-namespace HooAsset
+namespace GooAsset
 {
     /// <summary>
     /// 资源模块的辅助工具类，整合所有常用的工具函数

@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2025, Hainan Yuanyou Information Tecdhnology Co., Ltd. Guangzhou Branch
 ///
@@ -22,7 +22,7 @@
 /// THE SOFTWARE.
 /// -------------------------------------------------------------------------------
 
-namespace HooAsset
+namespace GooAsset
 {
     /// <summary>
     /// 资源模块的配置参数管理类
@@ -37,7 +37,7 @@ namespace HooAsset
             /// <summary>
             /// 是否加密清单文件和版本文件并隐藏真实的文件名
             /// </summary>
-            public static readonly bool ManifestFileEncryptEnabled = true;
+            public static readonly bool ManifestFileEncryptEnabled = false;
 
             internal const string Gd4H = "diKj530tJ6gzqRhAsMIu5YbxPee8H4dg";
 

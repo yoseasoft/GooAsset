@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2025, Hainan Yuanyou Information Tecdhnology Co., Ltd. Guangzhou Branch
 ///
@@ -22,12 +22,21 @@
 /// THE SOFTWARE.
 /// -------------------------------------------------------------------------------
 
-namespace HooAsset
+namespace GooAsset
 {
     /// <summary>
     /// 资源模块的配置参数管理类
     /// </summary>
     public static partial class Configure
     {
+        /// <summary>
+        /// 离线模式
+        /// </summary>
+        static bool _offlineMode;
+
+        /// <summary>
+        /// 获取离线模式状态标识
+        /// </summary>
+        public static bool OfflineMode => _offlineMode;
     }
 }

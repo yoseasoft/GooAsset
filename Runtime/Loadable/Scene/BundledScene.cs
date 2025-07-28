@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -26,7 +26,7 @@
 
 using UnityEngine.SceneManagement;
 
-namespace HooAsset
+namespace GooAsset
 {
     /// <summary>
     /// ab包里的场景加载

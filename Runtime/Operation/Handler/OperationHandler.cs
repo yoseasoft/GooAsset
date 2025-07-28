@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -26,7 +26,7 @@
 
 using System.Collections.Generic;
 
-namespace HooAsset
+namespace GooAsset
 {
     /// <summary>
     /// Operation对象的管理类，由它负责统一调度所有的操作对象实例

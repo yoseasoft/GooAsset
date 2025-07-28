@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -32,7 +32,7 @@ using UnityEngine.Networking;
 using SystemPath = System.IO.Path;
 using SystemDirectory = System.IO.Directory;
 
-namespace HooAsset
+namespace GooAsset
 {
     /// <summary>
     /// 资源目录及路径相关的辅助工具类，用于统一提供对资源访问路径相关的接口函数

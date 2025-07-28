@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -29,7 +29,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace HooAsset
+namespace GooAsset
 {
     /// <summary>
     /// Bundle对象管理

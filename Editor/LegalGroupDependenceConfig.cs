@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -31,7 +31,7 @@ using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using Sirenix.OdinInspector.Editor;
 
-namespace HooAsset.Editor
+namespace GooAsset.Editor
 {
     /// <summary>
     /// 组合理引用

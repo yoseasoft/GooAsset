@@ -1,5 +1,5 @@
 /// -------------------------------------------------------------------------------
-/// HooAsset Framework
+/// GooAsset Framework
 ///
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
@@ -26,7 +26,7 @@
 
 using System.Collections.Generic;
 
-namespace HooAsset.Editor.Simulation
+namespace GooAsset.Editor.Simulation
 {
     /// <summary>
     /// 编辑器下已使用资源记录, 记录后资源卸载(Resources.UnloadAsset)时先判断是否有使用, 可避免误卸载
