@@ -39,8 +39,26 @@ namespace GooAsset
             /// </summary>
             public static readonly bool ManifestFileEncryptEnabled = false;
 
+            /**
+             * 密钥（Key）和初始化向量（IV）是确保加密安全性的两个核心要素。
+             * 两者需配合使用：密钥保证加密解密一致性，IV增强加密安全性。
+             * 在CBC模式下，IV与首个明文块结合生成初始密文，后续明文块则与前一个密文块异或运算后再加密。
+             */
+
+            /// <summary>
+            /// 密钥（Key）<br/>
+            /// 用于加密和解密过程，双方需共享同一密钥。<br/>
+            /// 支持128位（16字节）、192位（24字节）和256位（32字节）三种长度，根据安全需求选择。<br/>
+            /// 密钥必须严格保密，泄露会导致加密数据被破解。
+            /// </summary>
             internal const string Gd4H = "diKj530tJ6gzqRhAsMIu5YbxPee8H4dg";
 
+            /// <summary>
+            /// 初始化向量（IV）<br/>
+            /// 与密钥结合增强加密随机性，避免相同明文重复加密产生相同密文。<br/>
+            /// 通常为128位（16字节），与AES数据块长度一致。<br/>
+            /// 初始化向量必须随机生成且不可预测，否则易受重放攻击和统计分析攻击。
+            /// </summary>
             internal const string ZNfR = "xyN8sJI7IMRfNzD5";
         }
     }
