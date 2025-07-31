@@ -34,98 +34,96 @@ namespace GooAsset.Editor
     /// <summary>
     /// Unity菜单选项
     /// </summary>
-    public static class AssetManagementMenuItems
+    public static class EditorAssetMenuItems
     {
-        /*
-        [MenuItem("资源管理/构建资源包", false, 0)]
+        [MenuItem("GooAsset/构建资源包", priority = 10)]
         static void BuildAllManifests()
         {
             BuildExecuter.StartBuild();
         }
 
-        [MenuItem("资源管理/首包资源环境配置", false, 1)]
+        [MenuItem("GooAsset/首包资源环境配置", priority = 11)]
         static void ArrangeBuildInFilesEnvironment()
         {
             BuildExecuter.ArrangeBuildInFilesEnvironment();
         }
 
-        [MenuItem("资源管理/手动修改打包版本", false, 2)]
+        [MenuItem("GooAsset/手动修改打包版本", priority = 12)]
         static void ChangeBuildVersion()
         {
             BuildExecuter.ChangeManifestVersionContainerVersion();
         }
 
-        [MenuItem("资源管理/清理过期文件", false, 3)]
+        [MenuItem("GooAsset/清理过期文件", priority = 13)]
         static void ClearHistoryFiles()
         {
             BuildExecuter.ClearHistoryFiles();
         }
 
-        [MenuItem("资源管理/资源打包分析", false, 101)]
+        [MenuItem("GooAsset/资源打包分析", priority = 101)]
         static void OpenBuildAnalyzerWindow()
         {
             BuildAnalyzerWindow.Open();
         }
 
-        [MenuItem("资源管理/资源运行分析", false, 102)]
+        [MenuItem("GooAsset/资源运行分析", priority = 102)]
         static void OpenRuntimeAnalyzerWindow()
         {
             RuntimeAnalyzerWindow.Open();
         }
 
-        [MenuItem("资源管理/查看版本变更", false, 103)]
+        [MenuItem("GooAsset/查看版本变更", priority = 103)]
         static void OpenVersionContrastWindow()
         {
             VersionContrastWindow.Open();
         }
 
-        [MenuItem("资源管理/多清单资源引用检查", false, 104)]
+        [MenuItem("GooAsset/多清单资源引用检查", priority = 104)]
         static void StartAssetsInMultiManifestCheck()
         {
             BuildExecuter.StartAssetsInMultiManifestCheck();
         }
 
-        [MenuItem("资源管理/多清单资源引用检查", true, 104)]
+        [MenuItem("GooAsset/多清单资源引用检查", true, 104)]
         static bool IsNeedAssetsInMultiManifestCheck()
         {
             return BuildUtils.GetAllManifestConfigs().Count > 1;
         }
 
-        [MenuItem("资源管理/选中资源清单配置", false, 201)]
+        [MenuItem("GooAsset/选中资源清单配置", priority = 201)]
         static void SelectManifestConfig()
         {
             BuildUtils.SelectManifestConfig();
         }
 
-        [MenuItem("资源管理/打开打包目录", false, 301)]
+        [MenuItem("GooAsset/打开打包目录", priority = 301)]
         static void OpenBuildFolder()
         {
             EditorUtility.OpenWithDefaultApp(BuildUtils.PlatformBuildPath);
         }
 
-        [MenuItem("资源管理/版本上传目录", false, 302)]
+        [MenuItem("GooAsset/版本上传目录", priority = 302)]
         static void OpenVersionFileUploadFolder()
         {
             EditorUtility.OpenWithDefaultApp(BuildUtils.PlatformUploadVersionFilePath);
         }
 
-        [MenuItem("资源管理/资源上传目录", false, 303)]
+        [MenuItem("GooAsset/资源上传目录", priority = 303)]
         static void OpenBundleUploadFolder()
         {
             EditorUtility.OpenWithDefaultApp(BuildUtils.PlatformUploadBundlePath);
         }
 
-        [MenuItem("资源管理/打开下载目录", false, 304)]
+        [MenuItem("GooAsset/打开下载目录", priority = 304)]
         static void OpenDownloadFolder()
         {
             EditorUtility.OpenWithDefaultApp(Application.persistentDataPath);
         }
 
-        [MenuItem("资源管理/打开临时目录", false, 305)]
+        [MenuItem("GooAsset/打开临时目录", priority = 305)]
         static void OpenTempFolder()
         {
             EditorUtility.OpenWithDefaultApp(Application.temporaryCachePath);
         }
-        */
     }
 }

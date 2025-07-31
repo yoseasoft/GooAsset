@@ -184,14 +184,14 @@ namespace GooAsset
             _buildInVersionFileCopyRequest = null;
             if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
             {
-                Finish("内置版本文件复制到临时目录失败, " + request.error);
+                Finish("内置版本文件复制到临时目录失败, 原因：" + request.error);
                 return;
             }
 
             _buildInManifestVersionContainer = ManifestHandler.LoadManifestVersionContainer(_buildInVersionFileSavePath);
             if (_buildInManifestVersionContainer is null)
             {
-                Finish("内置版本文件加载失败, path:" + _buildInVersionFileSavePath);
+                Finish("内置版本文件加载失败, 路径：" + _buildInVersionFileSavePath);
                 return;
             }
 

@@ -32,9 +32,9 @@ using System.Collections.Generic;
 namespace GooAsset.Editor.Build
 {
     /// <summary>
-    /// 清单配置
+    /// 资源清单配置
     /// </summary>
-    // [CreateAssetMenu(menuName = "资源管理/资源清单", fileName = "NewManifest")] // (因目前只创建两个就足够, 创建后不再在菜单显示, 故屏蔽此行代码)
+    [CreateAssetMenu(menuName = "GooAsset/Manifest List", fileName = "NewAssetManifest")] // (创建后可以固定配置信息，不再需要从菜单中创建，因此可以屏蔽此行代码)
     public class ManifestConfig : ScriptableObject
     {
         /// <summary>

@@ -1,8 +1,8 @@
 {
-    "name": "HooAsset.Editor",
+    "name": "GooAsset.Editor",
     "rootNamespace": "",
     "references": [
-        "HooAsset",
+        "GooAsset",
         "Unity.EditorCoroutines.Editor",
         "Unity.ScriptableBuildPipeline",
         "Unity.ScriptableBuildPipeline.Editor"
