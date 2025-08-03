@@ -58,7 +58,7 @@ namespace GooAsset
             string text = JsonUtility.ToJson(scriptableObject);
             if (Configure.Secret.ManifestFileEncryptEnabled)
             {
-                text = Utility.Cryptography.Encrypt(text, Configure.Secret.Gd4H, Configure.Secret.ZNfR);
+                text = Utility.Cryptography.Encrypt(text);
             }
 
             return text;
@@ -72,7 +72,7 @@ namespace GooAsset
             string text = SystemFile.ReadAllText(filePath);
             if (Configure.Secret.ManifestFileEncryptEnabled)
             {
-                return Utility.Cryptography.Decrypt(text, Configure.Secret.Gd4H, Configure.Secret.ZNfR);
+                return Utility.Cryptography.Decrypt(text);
             }
 
             return text;

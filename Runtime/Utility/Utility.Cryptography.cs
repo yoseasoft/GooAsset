@@ -94,6 +94,16 @@ namespace GooAsset
             /// AES encrypt
             /// </summary>
             /// <param name="data">Raw data</param>
+            /// <returns>Encrypted string</returns>
+            public static string Encrypt(string data)
+            {
+                return Encrypt(data, Configure.Secret.Gd4H, Configure.Secret.ZNfR);
+            }
+
+            /// <summary>
+            /// AES encrypt
+            /// </summary>
+            /// <param name="data">Raw data</param>
             /// <param name="key">Key, requires 32 bits</param>
             /// <param name="vector">IV, requires 16 bits</param>
             /// <returns>Encrypted string</returns>
@@ -111,6 +121,16 @@ namespace GooAsset
 
                 var encryptBytes = Encrypt(plainBytes, key, vector);
                 return encryptBytes != null ? SystemConvert.ToBase64String(encryptBytes) : null;
+            }
+
+            /// <summary>
+            /// AES encrypt
+            /// </summary>
+            /// <param name="data">Raw data</param>
+            /// <returns>Encrypted byte array</returns>
+            public static byte[] Encrypt(byte[] data)
+            {
+                return Encrypt(data, Configure.Secret.Gd4H, Configure.Secret.ZNfR);
             }
 
             /// <summary>
@@ -160,6 +180,16 @@ namespace GooAsset
             ///  AES decrypt
             /// </summary>
             /// <param name="data">Encrypted data</param>
+            /// <returns>Decrypted string</returns>
+            public static string Decrypt(string data)
+            {
+                return Decrypt(data, Configure.Secret.Gd4H, Configure.Secret.ZNfR);
+            }
+
+            /// <summary>
+            ///  AES decrypt
+            /// </summary>
+            /// <param name="data">Encrypted data</param>
             /// <param name="key">Key, requires 32 bits</param>
             /// <param name="vector">IV, requires 16 bits</param>
             /// <returns>Decrypted string</returns>
@@ -178,6 +208,16 @@ namespace GooAsset
                 byte[] decryptBytes = Decrypt(encryptedBytes, key, vector);
 
                 return decryptBytes != null ? SystemEncoding.UTF8.GetString(decryptBytes) : null;
+            }
+
+            /// <summary>
+            ///  AES decrypt
+            /// </summary>
+            /// <param name="data">Encrypted data</param>
+            /// <returns>Decrypted byte array</returns>
+            public static byte[] Decrypt(byte[] data)
+            {
+                return Decrypt(data, Configure.Secret.Gd4H, Configure.Secret.ZNfR);
             }
 
             /// <summary>
