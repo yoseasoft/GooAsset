@@ -40,7 +40,7 @@ namespace GooAsset.Editor
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void Init()
         {
-            AssetManagement.customGetOfflineModeFunc = GetOfflineMode;
+            AssetManagement.CustomGetOfflineModeFunc = GetOfflineMode;
             AssetPath.PlatformName = BuildUtils.GetActiveBuildPlatformName();
 
             AssetSettings settings = BuildUtils.GetOrCreateAssetSettings();

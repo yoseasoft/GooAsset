@@ -40,11 +40,6 @@ namespace GooAsset
     public static class AssetPath
     {
         /// <summary>
-        /// 打包目录
-        /// </summary>
-        public const string BuildPath = "Bundles";
-
-        /// <summary>
         /// 本地路径的网址前缀(例:file://)
         /// </summary>
         private static string _localProtocol;
@@ -53,6 +48,17 @@ namespace GooAsset
         /// 资源下载地址
         /// </summary>
         private static string _downloadUrl;
+
+        /// <summary>
+        /// 打包目录
+        /// </summary>
+        public static string BuildPath
+        {
+            get
+            {
+                return Configure.File.BuildOutputPath;
+            }
+        }
 
         /// <summary>
         /// 资源下载地址, 需外部设置

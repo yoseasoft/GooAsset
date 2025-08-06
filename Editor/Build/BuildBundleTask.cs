@@ -414,7 +414,7 @@ namespace GooAsset.Editor.Build
                 if (nameToBundleInfo.TryGetValue(assetBundleName, out ManifestBundleInfo manifestBundleInfo))
                 {
                     string fileName = GetAssetBundleFileName(assetBundleName);
-                    if (fileName == Configure.File.GetVersionFileName() || fileName == Configure.File.GetWhiteListVersionFileName())
+                    if (fileName == Configure.File.GetVersionFileName() || fileName == Configure.File.GetLatestVersionFileName())
                     {
                         Debug.LogError($"ab包的Hash值与版本文件冲突:{assetBundleName}, 可以尝试微改一下此资源重新打包");
                         return false;
@@ -468,13 +468,13 @@ namespace GooAsset.Editor.Build
             manifest.manifestBundleInfoList = manifestBundleInfoList;
 
             // 创建清单文件
-            string filePath = BuildUtils.TranslateToBuildPath($"AssetModuleTempFile_{_manifestName}.json");
+            string filePath = BuildUtils.TranslateToBuildPath($"GooAssetTempFile_{_manifestName}.json");
             File.WriteAllText(filePath, ManifestHandler.ManifestObjectToJson(manifest));
 
             // 重命名文件(使用hash用作文件后缀)
             string hash = Utility.Format.ComputeHashFromFile(filePath);
             string newFileName = Configure.Secret.ManifestFileEncryptEnabled ? (hash + BuildUtils.AssetBundleFileExtension) : $"{_manifestName}_{hash}.json";
-            if (newFileName == Configure.File.GetVersionFileName() || newFileName == Configure.File.GetWhiteListVersionFileName())
+            if (newFileName == Configure.File.GetVersionFileName() || newFileName == Configure.File.GetLatestVersionFileName())
             {
                 Debug.LogError($"清单文件的Hash值与版本文件冲突:{manifest.name}, 可以尝试随便改一个资源重新打包");
                 return false;

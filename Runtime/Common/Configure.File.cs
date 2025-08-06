@@ -22,6 +22,8 @@
 /// THE SOFTWARE.
 /// -------------------------------------------------------------------------------
 
+using SystemPath = System.IO.Path;
+
 namespace GooAsset
 {
     /// <summary>
@@ -39,28 +41,28 @@ namespace GooAsset
             /// <summary>
             /// 默认版本文件名字
             /// </summary>
-            const string DefaultVersionFileName = "version";
+            const string DefaultVersionFileName = @"version";
             /// <summary>
-            /// 默认白名单版本文件名字
+            /// 默认最新版本文件名字
             /// </summary>
-            const string DefaultWhiteListVersionFileName = "white_list_version";
+            const string DefaultLatestVersionFileName = @"latest_version";
             /// <summary>
             /// 加密版本文件名字
             /// </summary>
-            const string EncryptVersionFileName = "d4a27b33a023fdabc304433a38a64e11";
+            const string EncryptVersionFileName = @"d4a27b33a023fdabc304433a38a64e11";
             /// <summary>
-            /// 加密白名单版本文件名字
+            /// 加密最新版本文件名字
             /// </summary>
-            const string EncryptWhiteListVersionFileName = "33a38a6422e11d4a27b33a023fdabc28";
+            const string EncryptLatestVersionFileName = @"33a38a6422e11d4a27b33a023fdabc28";
 
             /// <summary>
             /// 默认版本文件的扩展名
             /// </summary>
-            const string DefaultVersionFileExtensionName = ".json";
+            const string DefaultVersionFileExtensionName = @".json";
             /// <summary>
             /// 加密版本文件的扩展名
             /// </summary>
-            const string EncryptVersionFileExtensionName = ".unity3d";
+            const string EncryptVersionFileExtensionName = @".unity3d";
 
             /// <summary>
             /// 获取默认的版本文件名称，不论加密模式是否开启，均使用原始名字
@@ -103,18 +105,18 @@ namespace GooAsset
             }
 
             /// <summary>
-            /// 获取白名单版本文件名称
+            /// 获取最新版本文件名称
             /// </summary>
-            /// <returns>返回白名单版本文件名称</returns>
-            public static string GetWhiteListVersionFileName()
+            /// <returns>返回最新版本文件名称</returns>
+            public static string GetLatestVersionFileName()
             {
                 if (Secret.ManifestFileEncryptEnabled)
                 {
-                    return $"{EncryptWhiteListVersionFileName}{EncryptVersionFileExtensionName}";
+                    return $"{EncryptLatestVersionFileName}{EncryptVersionFileExtensionName}";
                 }
                 else
                 {
-                    return $"{DefaultWhiteListVersionFileName}{DefaultVersionFileExtensionName}";
+                    return $"{DefaultLatestVersionFileName}{DefaultVersionFileExtensionName}";
                 }
             }
 
@@ -123,7 +125,73 @@ namespace GooAsset
             /// <summary>
             /// 打包目录
             /// </summary>
-            public const string BuildPath = "Bundles";
+            const string BuildPath = @"Build/AssetBundles";
+
+            /// <summary>
+            /// 标准输出目录名称
+            /// </summary>
+            const string StandardOutputDirectoryName = @"Output";
+
+            /// <summary>
+            /// 资源上传目录名称
+            /// </summary>
+            const string ResourceUploadDirectoryName = @"Upload";
+            /// <summary>
+            /// 资源包上传目录名称
+            /// </summary>
+            const string UploadBundleDirectoryName = @"Bundles";
+            /// <summary>
+            /// 资源版本文件上传目录名称
+            /// </summary>
+            const string UploadVersionFileDirectoryName = @"VersionFiles";
+            /// <summary>
+            /// 资源最新版本文件上传目录名称
+            /// </summary>
+            const string UploadLatestVersionFileDirectoryName = @"LatestVersionFiles";
+
+            /// <summary>
+            /// 资源打包目录
+            /// </summary>
+            public static string BuildOutputPath
+            {
+                get
+                {
+                    return SystemPath.Combine(BuildPath, StandardOutputDirectoryName);
+                }
+            }
+
+            /// <summary>
+            /// 资源上传目录
+            /// </summary>
+            public static string UploadBundlePath
+            {
+                get
+                {
+                    return SystemPath.Combine(BuildPath, ResourceUploadDirectoryName, UploadBundleDirectoryName);
+                }
+            }
+
+            /// <summary>
+            /// 版本文件上传目录
+            /// </summary>
+            public static string UploadVersionFilePath
+            {
+                get
+                {
+                    return SystemPath.Combine(BuildPath, ResourceUploadDirectoryName, UploadVersionFileDirectoryName);
+                }
+            }
+
+            /// <summary>
+            /// 最新版本文件上传目录
+            /// </summary>
+            public static string UploadLatestVersionFilePath
+            {
+                get
+                {
+                    return SystemPath.Combine(BuildPath, ResourceUploadDirectoryName, UploadLatestVersionFileDirectoryName);
+                }
+            }
         }
     }
 }

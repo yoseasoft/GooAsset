@@ -488,11 +488,11 @@ namespace GooAsset.Editor.Build
 
             #endregion
 
-            #region 复制白名单版本文件到上传目录
+            #region 复制最新版本文件到上传目录
 
             if (File.Exists(newVersionFilePath))
             {
-                string destFilePath = AssetPath.CombinePath(BuildUtils.PlatformUploadWhiteListVersionFilePath, Configure.File.GetWhiteListVersionFileName());
+                string destFilePath = AssetPath.CombinePath(BuildUtils.PlatformUploadLatestVersionFilePath, Configure.File.GetLatestVersionFileName());
                 File.Copy(newVersionFilePath, destFilePath, true);
             }
 

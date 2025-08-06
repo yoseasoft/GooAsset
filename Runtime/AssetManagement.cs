@@ -49,12 +49,12 @@ namespace GooAsset
         /// <summary>
         /// 内置资源包文件(包含已构建的原始文件)信息列表
         /// </summary>
-        static readonly Dictionary<string, bool> s_buildInBundleFileRecord = new();
+        static readonly Dictionary<string, bool> _buildInBundleFileRecord = new();
 
         /// <summary>
         /// 自定义获取离线模式方法
         /// </summary>
-        public static Func<bool> customGetOfflineModeFunc;
+        public static Func<bool> CustomGetOfflineModeFunc;
 
         #region 初始化、更新、下载、清除历史文件接口
 
@@ -70,7 +70,7 @@ namespace GooAsset
 
             // 初始化参数
             // 离线模式
-            offlineMode = customGetOfflineModeFunc?.Invoke() ?? settings.offlineMode;
+            offlineMode = CustomGetOfflineModeFunc?.Invoke() ?? settings.offlineMode;
             isOfflineWindows = offlineMode && (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor);
 
             // 初始化资源基本目录(需放在读取是否Windows离线模式后面, 以免创建Bundle目录)
@@ -79,7 +79,7 @@ namespace GooAsset
             // 首包资源列表
             if (settings.buildInBundleFileNameList != null)
                 foreach (string name in settings.buildInBundleFileNameList)
-                    s_buildInBundleFileRecord[name] = true;
+                    _buildInBundleFileRecord[name] = true;
 
             InitManifestOperation initManifestOperation = InitManifestOperation.CreateInitManifestOperationFunc();
             initManifestOperation.Start();
@@ -89,9 +89,9 @@ namespace GooAsset
         /// <summary>
         /// 更新指定版本的清单
         /// </summary>
-        public static UpdateManifestOperation UpdateManifestAsync(int version = 0, bool isWhiteList = false)
+        public static UpdateManifestOperation UpdateManifestAsync(int version = 0, bool isLatest = false)
         {
-            UpdateManifestOperation updateManifestOperation = new UpdateManifestOperation(version, isWhiteList);
+            UpdateManifestOperation updateManifestOperation = new UpdateManifestOperation(version, isLatest);
             updateManifestOperation.Start();
             return updateManifestOperation;
         }
@@ -270,7 +270,7 @@ namespace GooAsset
                             bundleInfoList.Add(bundleInfo);
 
                         foreach (ManifestBundleInfo dependentBundleInfo in manifest.GetDependentBundleInfoList(bundleInfo))
-                            if (!s_buildInBundleFileRecord.ContainsKey(dependentBundleInfo.NameWithHash) && !bundleInfoList.Contains(dependentBundleInfo))
+                            if (!_buildInBundleFileRecord.ContainsKey(dependentBundleInfo.NameWithHash) && !bundleInfoList.Contains(dependentBundleInfo))
                                 bundleInfoList.Add(dependentBundleInfo);
                     }
                 }
@@ -285,7 +285,7 @@ namespace GooAsset
         /// <param name="fileNameWithHash">带hash的文件名字</param>
         internal static bool IsBuildInFile(string fileNameWithHash)
         {
-            return s_buildInBundleFileRecord.ContainsKey(fileNameWithHash);
+            return _buildInBundleFileRecord.ContainsKey(fileNameWithHash);
         }
 
         #endregion

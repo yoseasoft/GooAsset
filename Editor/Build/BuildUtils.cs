@@ -48,29 +48,14 @@ namespace GooAsset.Editor.Build
         internal static readonly bool isBuildHashOnlyFile = true;
 
         /// <summary>
-        /// 需要上传的打包文件目录名
-        /// </summary>
-        const string UploadBundlesFolderName = "UploadBundles";
-
-        /// <summary>
-        /// 需要上传的版本文件目录名
-        /// </summary>
-        const string UploadVersionFilesFolderName = "UploadVersionFiles";
-
-        /// <summary>
-        /// 需要上传的白名单版本文件目录名
-        /// </summary>
-        const string UploadWhiteListVersionFilesFolderName = "UploadWhiteListVersionFiles";
-
-        /// <summary>
         /// 打包历史信息记录文件夹
         /// </summary>
-        public const string BuildRecordFolderName = "~BuildRecord";
+        public const string BuildRecordFolderName = "~BuildLogs";
 
         /// <summary>
         /// 打包记录信息文件名前缀
         /// </summary>
-        public const string BuildRecordFilePrefix = "buildRecord_v";
+        public const string BuildRecordFilePrefix = "buildlog_v";
 
         /// <summary>
         /// ab包需要后缀为.unity3d, 不然超过一定数量非.unity3d后缀的文件会导致Android平台打包失败
@@ -283,7 +268,7 @@ namespace GooAsset.Editor.Build
         {
             get
             {
-                string path = AssetPath.CombinePath(UploadVersionFilesFolderName, GetActiveBuildPlatformName());
+                string path = AssetPath.CombinePath(Configure.File.UploadVersionFilePath, GetActiveBuildPlatformName());
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -293,13 +278,13 @@ namespace GooAsset.Editor.Build
         }
 
         /// <summary>
-        /// 获取当前平台的白名单版本文件上传目录, 若没有该文件夹则顺便创建了
+        /// 获取当前平台的最新版本文件上传目录, 若没有该文件夹则顺便创建了
         /// </summary>
-        public static string PlatformUploadWhiteListVersionFilePath
+        public static string PlatformUploadLatestVersionFilePath
         {
             get
             {
-                string path = AssetPath.CombinePath(UploadWhiteListVersionFilesFolderName, GetActiveBuildPlatformName());
+                string path = AssetPath.CombinePath(Configure.File.UploadLatestVersionFilePath, GetActiveBuildPlatformName());
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -315,7 +300,7 @@ namespace GooAsset.Editor.Build
         {
             get
             {
-                string path = AssetPath.CombinePath(UploadBundlesFolderName, GetActiveBuildPlatformName());
+                string path = AssetPath.CombinePath(Configure.File.UploadBundlePath, GetActiveBuildPlatformName());
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);

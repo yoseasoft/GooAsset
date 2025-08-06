@@ -39,11 +39,11 @@ namespace GooAsset
         /// 构造函数
         /// </summary>
         /// <param name="version">指定更新的版本</param>
-        /// <param name="isWhiteList">是否为白名单</param>
-        public UpdateManifestOperation(int version = 0, bool isWhiteList = false)
+        /// <param name="isLatest">是否为最新的</param>
+        public UpdateManifestOperation(int version = 0, bool isLatest = false)
         {
             Version = version;
-            IsWhiteList = isWhiteList;
+            IsLatest = isLatest;
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace GooAsset
         /// <summary>
         /// 是否白名单
         /// </summary>
-        public bool IsWhiteList { get; }
+        public bool IsLatest { get; }
 
         /// <summary>
         /// 版本文件下载保存目录
@@ -92,9 +92,9 @@ namespace GooAsset
 
             string downloadUrl;
 
-            if (IsWhiteList)
+            if (IsLatest)
             {
-                downloadUrl = AssetPath.TranslateToDownloadUrl(Configure.File.GetWhiteListVersionFileName());
+                downloadUrl = AssetPath.TranslateToDownloadUrl(Configure.File.GetLatestVersionFileName());
             }
             else
             {
