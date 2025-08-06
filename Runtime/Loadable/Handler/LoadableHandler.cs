@@ -76,7 +76,7 @@ namespace GooAsset
             // Loading列表处理
             for (int i = 0, loadingCount = LoadingList.Count; i < loadingCount; i++)
             {
-                if (AssetDispatcher.Instance.IsBusy)
+                if (AssetDispatcher.IsBusy)
                     return;
 
                 Loadable loadable = LoadingList[i];
@@ -100,7 +100,7 @@ namespace GooAsset
             // Unused列表处理
             for (int i = 0, unusedCount = UnusedList.Count; i < unusedCount; i++)
             {
-                if (AssetDispatcher.Instance.IsBusy)
+                if (AssetDispatcher.IsBusy)
                     break;
 
                 Loadable loadable = UnusedList[i];

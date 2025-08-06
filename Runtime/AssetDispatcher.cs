@@ -31,8 +31,9 @@ namespace GooAsset
     /// <summary>
     /// 资源管理调度器
     /// </summary>
-    public sealed class AssetDispatcher : MonoBehaviour
+    internal static /*sealed*/ class AssetDispatcher // : MonoBehaviour
     {
+        /**
         /// <summary>
         /// 进入游戏时先找到或创建Updater
         /// </summary>
@@ -48,11 +49,12 @@ namespace GooAsset
             dispatcher = new GameObject(nameof(AssetDispatcher)).AddComponent<AssetDispatcher>();
             DontDestroyOnLoad(dispatcher);
         }
+        */
 
         /// <summary>
         /// 调度实例
         /// </summary>
-        public static AssetDispatcher Instance { get; private set; }
+        // public static AssetDispatcher Instance { get; private set; }
 
         /// <summary>
         /// 每次Update最大时间, 大于等于此时间视为繁忙, 不再做处理
@@ -62,19 +64,21 @@ namespace GooAsset
         /// <summary>
         /// 当前时间
         /// </summary>
-        float _curTime;
+        static float _curTime = 0f;
 
         /// <summary>
         /// 程序是否繁忙(用于资源加载分帧处理, 保证流畅)
         /// </summary>
-        public bool IsBusy => Time.realtimeSinceStartup - _curTime >= BusyTime;
+        public static bool IsBusy => Time.realtimeSinceStartup - _curTime >= BusyTime;
 
-        void Awake()
+        // void Awake()
+        public static void Start()
         {
-            Instance = this;
+            // Instance = this;
         }
 
-        void Update()
+        // void Update()
+        public static void Update()
         {
             _curTime = Time.realtimeSinceStartup;
 
@@ -83,7 +87,8 @@ namespace GooAsset
             DownloadHandler.Update();
         }
 
-        void OnDestroy()
+        // void OnDestroy()
+        public static void Stop()
         {
             Clear();
         }
@@ -91,7 +96,7 @@ namespace GooAsset
         /// <summary>
         /// 清理所有下载和加载内容
         /// </summary>
-        public void Clear()
+        static void Clear()
         {
             DownloadHandler.ClearAllDownloads();
             LoadableHandler.ClearAllLoadables();

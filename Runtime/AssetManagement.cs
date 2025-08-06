@@ -56,12 +56,45 @@ namespace GooAsset
         /// </summary>
         public static Func<bool> CustomGetOfflineModeFunc;
 
+        /// <summary>
+        /// 初始化资源管理
+        /// </summary>
+        public async static void Init()
+        {
+            // 异步初始化任务调度
+            await InitAsync().Task;
+        }
+
+        /// <summary>
+        /// 启动资源管理
+        /// </summary>
+        public static void Startup()
+        {
+            AssetDispatcher.Start();
+        }
+
+        /// <summary>
+        /// 刷新资源管理
+        /// </summary>
+        public static void Update()
+        {
+            AssetDispatcher.Update();
+        }
+
+        /// <summary>
+        /// 关闭资源管理
+        /// </summary>
+        public static void Shutdown()
+        {
+            AssetDispatcher.Stop();
+        }
+
         #region 初始化、更新、下载、清除历史文件接口
 
         /// <summary>
         /// 初始化, 运行AssetManagement模块的第一步就是先初始化
         /// </summary>
-        public static InitManifestOperation InitAsync()
+        static InitManifestOperation InitAsync()
         {
             // 读取基本设置设置参数
             AssetSettings settings = Resources.Load<AssetSettings>(nameof(AssetSettings));

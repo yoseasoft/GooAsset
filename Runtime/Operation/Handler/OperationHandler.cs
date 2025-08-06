@@ -54,7 +54,7 @@ namespace GooAsset
             // 需要按顺序Update, 所以虽然要Remove也不倒着来遍历
             for (int n = 0; n < _operations.Count; ++n)
             {
-                if (AssetDispatcher.Instance.IsBusy)
+                if (AssetDispatcher.IsBusy)
                     return;
 
                 Operation operation = _operations[n];

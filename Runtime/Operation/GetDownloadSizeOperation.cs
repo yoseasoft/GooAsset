@@ -123,7 +123,7 @@ namespace GooAsset
 
                 _bundleInfos.RemoveAt(0);
 
-                if (AssetDispatcher.Instance.IsBusy)
+                if (AssetDispatcher.IsBusy)
                 {
                     return;
                 }
