@@ -205,9 +205,9 @@ namespace GooAsset.Editor.GUI
             // 初始化图标
             _changeTypeToGUITexture = new Dictionary<VersionContrastTreeViewItem.ChangeType, Texture2D>
             {
-                [VersionContrastTreeViewItem.ChangeType.Add] = Resources.Load<Texture2D>("AssetModuleVersionContrast/Add"),
-                [VersionContrastTreeViewItem.ChangeType.Remove] = Resources.Load<Texture2D>("AssetModuleVersionContrast/Remove"),
-                [VersionContrastTreeViewItem.ChangeType.Modify] = Resources.Load<Texture2D>("AssetModuleVersionContrast/Modify")
+                [VersionContrastTreeViewItem.ChangeType.Add] = Resources.Load<Texture2D>("GooAssetVersionContrast/Add"),
+                [VersionContrastTreeViewItem.ChangeType.Remove] = Resources.Load<Texture2D>("GooAssetVersionContrast/Remove"),
+                [VersionContrastTreeViewItem.ChangeType.Modify] = Resources.Load<Texture2D>("GooAssetVersionContrast/Modify")
             };
         }
 

@@ -67,7 +67,7 @@ namespace GooAsset.Editor.GUI
         /// <summary>
         /// 记录构建完成是否打开对比窗口的Key值
         /// </summary>
-        const string OpenWindowRecordKey = "AssetModuleBuildSelectWindowIsOpenWindowAfterBuild";
+        const string OpenWindowRecordKey = @"GooAssetBuildSelectWindowIsOpenWindowAfterBuild";
 
         /// <summary>
         /// 构建完成是否打开打包目录
@@ -77,7 +77,7 @@ namespace GooAsset.Editor.GUI
         /// <summary>
         /// 记录构建完成是否打开对比窗口的Key值
         /// </summary>
-        const string OpenFolderRecordKey = "AssetModuleBuildSelectWindowIsOpenFolderAfterBuild";
+        const string OpenFolderRecordKey = @"GooAssetBuildSelectWindowIsOpenFolderAfterBuild";
 
         void OnEnable()
         {
