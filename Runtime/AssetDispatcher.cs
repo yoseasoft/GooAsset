@@ -31,9 +31,8 @@ namespace GooAsset
     /// <summary>
     /// 资源管理调度器
     /// </summary>
-    internal static /*sealed*/ class AssetDispatcher // : MonoBehaviour
+    internal sealed class AssetDispatcher : MonoBehaviour
     {
-        /**
         /// <summary>
         /// 进入游戏时先找到或创建Updater
         /// </summary>
@@ -49,36 +48,33 @@ namespace GooAsset
             dispatcher = new GameObject(nameof(AssetDispatcher)).AddComponent<AssetDispatcher>();
             DontDestroyOnLoad(dispatcher);
         }
-        */
 
         /// <summary>
         /// 调度实例
         /// </summary>
-        // public static AssetDispatcher Instance { get; private set; }
+        public static AssetDispatcher Instance { get; private set; }
 
         /// <summary>
         /// 每次Update最大时间, 大于等于此时间视为繁忙, 不再做处理
         /// </summary>
-        static float BusyTime => Application.backgroundLoadingPriority != ThreadPriority.High ? 0.01f : 0.06f;
+        float BusyTime => Application.backgroundLoadingPriority != ThreadPriority.High ? 0.01f : 0.06f;
 
         /// <summary>
         /// 当前时间
         /// </summary>
-        static float _curTime = 0f;
+        float _curTime = 0f;
 
         /// <summary>
         /// 程序是否繁忙(用于资源加载分帧处理, 保证流畅)
         /// </summary>
-        public static bool IsBusy => Time.realtimeSinceStartup - _curTime >= BusyTime;
+        public bool IsBusy => Time.realtimeSinceStartup - _curTime >= BusyTime;
 
-        // void Awake()
-        public static void Start()
+        void Awake()
         {
-            // Instance = this;
+            Instance = this;
         }
 
-        // void Update()
-        public static void Update()
+        void Update()
         {
             _curTime = Time.realtimeSinceStartup;
 
@@ -87,8 +83,7 @@ namespace GooAsset
             DownloadHandler.Update();
         }
 
-        // void OnDestroy()
-        public static void Stop()
+        void OnDestroy()
         {
             Clear();
         }
@@ -96,7 +91,7 @@ namespace GooAsset
         /// <summary>
         /// 清理所有下载和加载内容
         /// </summary>
-        static void Clear()
+        void Clear()
         {
             DownloadHandler.ClearAllDownloads();
             LoadableHandler.ClearAllLoadables();

@@ -81,7 +81,7 @@ namespace GooAsset
                     File.Delete(filePath);
                 _needDeleteFilePaths.RemoveAt(0);
 
-                if (AssetDispatcher.IsBusy)
+                if (AssetDispatcher.Instance.IsBusy)
                     return;
             }
 

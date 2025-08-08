@@ -103,7 +103,7 @@ namespace GooAsset.Editor.Simulation
                 _dependentAssetList.Add(AssetDatabase.LoadAssetAtPath(_needLoadDependencyList[i], typeof(Object)));
                 _loadingIndex++;
 
-                if (AssetDispatcher.IsBusy)
+                if (AssetDispatcher.Instance.IsBusy)
                     break;
             }
 

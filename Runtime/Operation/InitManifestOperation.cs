@@ -336,7 +336,7 @@ namespace GooAsset
 
                 Progress = BuildInContainerProportion + (1 - loadManifestProportion) + (float) (n + 1) / _loadingManifestVersionList.Count * loadManifestProportion;
 
-                if (AssetDispatcher.IsBusy)
+                if (AssetDispatcher.Instance.IsBusy)
                     return;
             }
 
