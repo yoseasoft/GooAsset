@@ -32,7 +32,7 @@ namespace GooAsset
     /// <summary>
     /// 资源运行参数配置类
     /// </summary>
-    // [CreateAssetMenu(menuName = "HooAsset/Create Asset Settings", fileName = "AssetSettings")] // (因每个工程只需要创建一个实例就足够, 创建后不再在菜单显示, 故屏蔽此行代码)
+    [CreateAssetMenu(menuName = "GooAsset/Asset Settings", fileName = "NewAssetSettings")] // (因每个工程只需要创建一个实例就足够, 创建后不再在菜单显示, 故屏蔽此行代码)
     public class AssetSettings : ScriptableObject
     {
 #if UNITY_EDITOR
