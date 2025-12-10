@@ -4,6 +4,7 @@
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
 /// Copyright (C) 2023 - 2024, Guangzhou Shiyue Network Technology Co., Ltd.
+/// Copyright (C) 2025, Hainan Yuanyou Information Technology Co., Ltd. Guangzhou Branch
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -25,13 +26,12 @@
 /// -------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
 using Sirenix.OdinInspector;
-using System.Collections.Generic;
-using Object = UnityEngine.Object;
 
 namespace GooAsset.Editor.Build
 {
@@ -46,6 +46,12 @@ namespace GooAsset.Editor.Build
         /// </summary>
         [LabelText("备注")]
         public string note;
+
+        /// <summary>
+        /// 标签
+        /// </summary>
+        [LabelText("标签")]
+        public string tag;
 
         /// <summary>
         /// 是否启用
@@ -76,7 +82,7 @@ namespace GooAsset.Editor.Build
         /// 目标文件或文件夹的Unity对象
         /// </summary>
         [LabelText("目标文件或文件夹"), ShowIf("@isActive && (!isExternalPath || bundleMode != BundleMode.原始文件)")]
-        public Object target;
+        public UnityEngine.Object target;
 
         /// <summary>
         /// 资源过滤条件文本
@@ -240,6 +246,7 @@ namespace GooAsset.Editor.Build
 
                     return new BuildAssetInfo
                     {
+                        tag = tag,
                         path = assetPath,
                         buildFileName = BuildUtils.GetAssetPackedBundleName(assetPath, bundleMode, assetBundleFileName),
                         isExternalFile = bundleMode == BundleMode.原始文件 && isExternalPath,
@@ -307,6 +314,7 @@ namespace GooAsset.Editor.Build
 
                         buildAssetInfoList.Add(new BuildAssetInfo
                         {
+                            tag = tag,
                             path = assetPath,
                             buildFileName = BuildUtils.GetAssetPackedBundleName(assetPath, bundleMode, simplePath),
                             isExternalFile = false,

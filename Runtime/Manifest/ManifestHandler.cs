@@ -4,6 +4,7 @@
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
 /// Copyright (C) 2023 - 2024, Guangzhou Shiyue Network Technology Co., Ltd.
+/// Copyright (C) 2025, Hainan Yuanyou Information Technology Co., Ltd. Guangzhou Branch
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -232,6 +233,29 @@ namespace GooAsset
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// 从所有资源清单中提取匹配指定标签的所有资源路径信息
+        /// </summary>
+        /// <param name="tag">资源标签</param>
+        /// <returns>返回资源路径列表，所没有匹配到任何信息则返回null</returns>
+        public static IList<string> GetAllAssetPathsByTag(string tag)
+        {
+            List<string> result = null;
+
+            for (int n = 0; n < _manifestList.Count; ++n)
+            {
+                Manifest manifest = _manifestList[n];
+                IList<string> assetPaths = manifest.GetAssetPathsByTag(tag);
+                if (null != assetPaths)
+                {
+                    if (null == result) result = new ();
+                    result.AddRange(assetPaths);
+                }
+            }
+
+            return result;
         }
     }
 }

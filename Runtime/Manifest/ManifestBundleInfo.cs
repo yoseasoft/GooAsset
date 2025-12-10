@@ -4,6 +4,7 @@
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
 /// Copyright (C) 2023 - 2024, Guangzhou Shiyue Network Technology Co., Ltd.
+/// Copyright (C) 2025, Hainan Yuanyou Information Technology Co., Ltd. Guangzhou Branch
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -49,6 +50,11 @@ namespace GooAsset
         /// (2.原始文件的名字就是{组配置的打包文件夹名/原文件(并带有文件后缀)})
         /// </summary>
         public string n;
+
+        /// <summary>
+        /// 标签
+        /// </summary>
+        public string t;
 
         /// <summary>
         /// 是否为原始文件(0:false, 1:true)
@@ -103,6 +109,15 @@ namespace GooAsset
         {
             get => n;
             set => n = value;
+        }
+
+        /// <summary>
+        /// 标签
+        /// </summary>
+        public string Tag
+        {
+            get => t;
+            set => t = value;
         }
 
         /// <summary>

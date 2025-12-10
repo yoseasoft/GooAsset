@@ -4,6 +4,7 @@
 /// Copyright (C) 2020 - 2022, Guangzhou Xinyuan Technology Co., Ltd.
 /// Copyright (C) 2022 - 2023, Shanghai Bilibili Technology Co., Ltd.
 /// Copyright (C) 2023 - 2024, Guangzhou Shiyue Network Technology Co., Ltd.
+/// Copyright (C) 2025, Hainan Yuanyou Information Technology Co., Ltd. Guangzhou Branch
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +26,8 @@
 /// -------------------------------------------------------------------------------
 
 using System;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace GooAsset
 {
@@ -56,6 +57,11 @@ namespace GooAsset
         Dictionary<string, ManifestBundleInfo> _assetPathToBundleInfo = new();
 
         /// <summary>
+        /// 资源标签和资源路径列表的对照字典
+        /// </summary>
+        Dictionary<string, IList<string>> _tagToAssetPaths = new();
+
+        /// <summary>
         /// 根据新清单对象覆盖清单原有配置
         /// </summary>
         public void OverrideManifest(Manifest manifest)
@@ -63,6 +69,7 @@ namespace GooAsset
             manifestBundleInfoList = manifest.manifestBundleInfoList;
             _nameToBundleInfo = manifest._nameToBundleInfo;
             _assetPathToBundleInfo = manifest._assetPathToBundleInfo;
+            _tagToAssetPaths = manifest._tagToAssetPaths;
         }
 
         /// <summary>
@@ -72,6 +79,7 @@ namespace GooAsset
         {
             _nameToBundleInfo.Clear();
             _assetPathToBundleInfo.Clear();
+            _tagToAssetPaths.Clear();
 
             foreach (ManifestBundleInfo bundleInfo in manifestBundleInfoList)
             {
@@ -80,6 +88,24 @@ namespace GooAsset
                 {
                     _assetPathToBundleInfo[path] = bundleInfo;
                     AssetPath.RecordCustomLoadPath(path);
+                }
+
+                // 记录标签
+                if (false == string.IsNullOrEmpty(bundleInfo.Tag))
+                {
+                    if (false == _tagToAssetPaths.TryGetValue(bundleInfo.Tag, out IList<string> list))
+                    {
+                        list = new List<string>();
+                        _tagToAssetPaths.Add(bundleInfo.Tag, list);
+                    }
+
+                    foreach (string path in bundleInfo.AssetPathList)
+                    {
+                        if (false == list.Contains(path))
+                        {
+                            list.Add(path);
+                        }
+                    }
                 }
             }
         }
@@ -109,6 +135,19 @@ namespace GooAsset
         public ManifestBundleInfo GetBundleInfo(string assetPath)
         {
             return _assetPathToBundleInfo.GetValueOrDefault(assetPath);
+        }
+
+        /// <summary>
+        /// 根据标签获取所有相关资源路径
+        /// </summary>
+        /// <param name="tag">资源标签</param>
+        /// <returns>返回相应的资源路径列表，若不存在则返回null</returns>
+        public IList<string> GetAssetPathsByTag(string tag)
+        {
+            if (_tagToAssetPaths.TryGetValue(tag, out IList<string> list))
+                return list;
+
+            return null;
         }
 
         /// <summary>
