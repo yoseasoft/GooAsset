@@ -5,7 +5,9 @@
         "GooAsset",
         "Unity.EditorCoroutines.Editor",
         "Unity.ScriptableBuildPipeline",
-        "Unity.ScriptableBuildPipeline.Editor"
+        "Unity.ScriptableBuildPipeline.Editor",
+        "NovaEditor.Common",
+        "NovaFramework.Common"
     ],
     "includePlatforms": [
         "Editor"
