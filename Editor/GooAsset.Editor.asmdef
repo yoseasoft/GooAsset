@@ -6,8 +6,8 @@
         "Unity.EditorCoroutines.Editor",
         "Unity.ScriptableBuildPipeline",
         "Unity.ScriptableBuildPipeline.Editor",
-        "NovaEditor.Common",
-        "NovaFramework.Common"
+        "NovaFramework.Common",
+        "NovaEditor.Common"
     ],
     "includePlatforms": [
         "Editor"

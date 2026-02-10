@@ -67,7 +67,7 @@ namespace NovaFramework.Editor.Preference
                 
                 string aotPath = aotPathObject?.defaultValue ?? "Assets/_Resources/Aot";
                 string codePath = linkPathObject?.defaultValue ?? "Assets/_Resources/Code";
-                string guiPath = "Assets/_Resources/GUI";
+                string guiPath = "Assets/_Resources/Gui";
                 string texturePath = "Assets/_Resources/Texture";
                 
                 // 创建默认资源组
@@ -77,8 +77,8 @@ namespace NovaFramework.Editor.Preference
                 UnityEngine.Object guiTarget = GetOrCreateAssetAtPath(guiPath);
                 UnityEngine.Object textureTarget = GetOrCreateAssetAtPath(texturePath);
                 
-                Group GUI = CreateGroup("GUI", "t:Prefab", "GUI", BundleMode.单独打包, guiTarget);
-                Group AotGroup = CreateGroup("运行库", "t:TextAsset", "AOT",BundleMode.整组打包, aotTarget);
+                Group GUI = CreateGroup("GUI", "t:Prefab", "Gui", BundleMode.单独打包, guiTarget);
+                Group AotGroup = CreateGroup("运行库", "t:TextAsset", "Aot",BundleMode.整组打包, aotTarget);
                 Group CodeGroup = CreateGroup("代码", "t:TextAsset", "Code", BundleMode.单独打包, codeTarget);
                 Group TextureGroup = CreateGroup("图片", "t:Texture", "Texture", BundleMode.按文件夹打包, textureTarget);
           
