@@ -108,7 +108,7 @@ namespace NovaFramework.Editor.Preference
             var group = new Group();
             group.note = note;
             group.bundleMode = bundleMode;
-            group.buildTargetList = new BuildTarget[] {BuildTarget.StandaloneWindows64 };
+            group.buildTargetList = new BuildTarget[] {};
             group.filter = filter;
             group.target = target;
             group.assetBundleFileName = bundleName;
