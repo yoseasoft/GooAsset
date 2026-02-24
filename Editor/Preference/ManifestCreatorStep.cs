@@ -38,7 +38,7 @@ namespace NovaFramework.Editor.Preference
     {
         // 保存ManifestConfig为Asset
         string assetPath = "Assets/Editor/AssetBuildConfig/SampleManifestConfig.asset";
-        public override void Install(System.Action onComplete = null)
+        public void Install(System.Action onComplete = null)
         {
             Debug.Log("GooAssetManifestCreator: 开始创建资源清单配置");
             
@@ -134,7 +134,7 @@ namespace NovaFramework.Editor.Preference
             return AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
         }
 
-        public override void Uninstall(System.Action onComplete = null)
+        public void Uninstall(System.Action onComplete = null)
         {
             Debug.Log("GooAssetManifestCreator: 执行卸载操作");
             
