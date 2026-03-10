@@ -38,10 +38,10 @@ namespace NovaFramework.Editor.Preference
     {
         // 保存ManifestConfig为Asset
         string assetPath = "Assets/Editor/AssetBuildConfig/SampleManifestConfig.asset";
-        public void Install(System.Action onComplete = null)
+        public void Install(System.Action onComplete = null, Action<string> addLog = null)
         {
-            Debug.Log("GooAssetManifestCreator: 开始创建资源清单配置");
-            
+            addLog?.Invoke("开始创建资源清单配置");
+
             try
             {
                 // 确保Resources目录存在
@@ -91,12 +91,12 @@ namespace NovaFramework.Editor.Preference
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
                 
-                Debug.Log($"已创建资源清单配置: {assetPath}");
+                addLog?.Invoke($"已创建资源清单配置: {assetPath}");
             }
             catch (Exception ex)
             {
-                Debug.LogError($"创建资源清单配置时出错: {ex.Message}");
-                Debug.LogError($"堆栈跟踪: {ex.StackTrace}");
+                addLog?.Invoke($"创建资源清单配置时出错: {ex.Message}");
+                Debug.LogError($"创建资源清单配置时出错: {ex.Message}\n{ex.StackTrace}");
             }
             
             // 调用完成回调
